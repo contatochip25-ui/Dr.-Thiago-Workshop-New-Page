@@ -16,8 +16,7 @@ import {
 } from 'lucide-react';
 
 /**
- * IMAGES PROVIDED BY USER
- * Note: Encoded special characters in URLs to ensure cross-platform build stability.
+ * IMAGES - URL ENCODED FOR STABILITY
  */
 const IMAGES = {
   mainAuthority: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagobra%C3%A7ocruzado.png",
@@ -28,7 +27,7 @@ const IMAGES = {
 
 // --- Utilities ---
 
-const safeOpen = (url: string) => {
+const safeOpen = (url: string): void => {
   if (typeof window !== 'undefined') {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
@@ -60,10 +59,10 @@ const CTAButton: React.FC<CTAButtonProps> = ({ className = '', hasLed = false })
   <div className={`flex flex-col items-center w-full px-4 ${className}`}>
     <button 
       onClick={() => safeOpen('https://checkout.exemplo.com')}
-      className={`group relative w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[6px] border-red-900 overflow-hidden antialiased ${
+      className={`group relative w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[6px] border-red-900 overflow-hidden antialiased text-[1.1rem] ${
         hasLed 
-        ? 'text-[1.05rem] led-active ring-1 ring-red-500/40' 
-        : 'text-[1.1rem] shadow-[0_0_20px_rgba(220,38,38,0.4)] ring-1 ring-red-500/20'
+        ? 'led-active ring-1 ring-red-500/40' 
+        : 'shadow-[0_0_20px_rgba(220,38,38,0.4)] ring-1 ring-red-500/20'
       }`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12" />
@@ -81,7 +80,7 @@ const VideoCard: React.FC<{ title: string; thumbnail: string }> = ({ title, thum
     <div className="relative aspect-video flex items-center justify-center bg-black group">
       <img 
         src={thumbnail} 
-        alt="Thumbnail Preview" 
+        alt="Preview Profissional" 
         className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500"
         loading="lazy"
       />
@@ -123,8 +122,9 @@ const App: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={IMAGES.mainAuthority} 
-            alt="Dr. Thiago Costa - Autoridade Médica" 
+            alt="Dr. Thiago Costa - Domínio Médico" 
             className="w-full h-full object-cover object-top filter brightness-[0.7] contrast-[1.1]"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-transparent" />
