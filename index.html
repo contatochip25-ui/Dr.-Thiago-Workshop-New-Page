@@ -24,19 +24,16 @@
             -moz-osx-font-smoothing: grayscale;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
         h1, h2, h3, h4, .font-heading {
             font-family: 'Lexend', sans-serif;
-        }
-        .red-glow {
-            box-shadow: 0 10px 40px -10px rgba(220, 38, 38, 0.6);
         }
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
         }
 
-        /* PREMIUM LED GLOW ANIMATION - OPTIMIZED FOR VERCEL/PRODUCTION */
         @keyframes led-pulse {
             0%, 100% { 
                 box-shadow: 0 0 15px rgba(220, 38, 38, 0.4), 0 0 0 1px rgba(220, 38, 38, 0.3);
@@ -50,16 +47,19 @@
             border-color: rgba(220, 38, 38, 0.5) !important;
         }
         
-        /* Previne erros de layout em telas muito pequenas */
-        .min-h-screen { min-height: 100vh; min-height: 100dvh; }
+        #root {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom": "https://esm.sh/react-dom@^19.2.3",
-    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }

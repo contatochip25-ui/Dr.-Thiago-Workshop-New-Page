@@ -15,9 +15,6 @@ import {
   Video
 } from 'lucide-react';
 
-/**
- * IMAGES - URL ENCODED FOR STABILITY
- */
 const IMAGES = {
   mainAuthority: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagobra%C3%A7ocruzado.png",
   leadership: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago3.jpg",
@@ -25,15 +22,11 @@ const IMAGES = {
   trust: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago2.jpg"
 };
 
-// --- Utilities ---
-
 const safeOpen = (url: string): void => {
   if (typeof window !== 'undefined') {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 };
-
-// --- Components ---
 
 const ProgressBar: React.FC = () => (
   <div className="w-full mt-4 px-2">
@@ -110,7 +103,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] selection:bg-red-600 selection:text-white pb-20">
       
-      {/* --- HERO / FIRST FOLD --- */}
+      {/* --- HERO --- */}
       <section className="relative min-h-[98vh] flex flex-col justify-end overflow-hidden">
         <div className="absolute top-0 left-0 right-0 z-30 pt-6 px-6 text-center">
            <span className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-red-600/20">
@@ -122,9 +115,8 @@ const App: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={IMAGES.mainAuthority} 
-            alt="Dr. Thiago Costa - Domínio Médico" 
+            alt="Dr. Thiago Costa" 
             className="w-full h-full object-cover object-top filter brightness-[0.7] contrast-[1.1]"
-            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-transparent" />
@@ -165,10 +157,9 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* --- PAIN / IDENTIFICATION --- */}
+      {/* --- PAINS --- */}
       <section className="py-20 px-6 bg-[#0a0a0a] border-y border-white/5">
         <SectionTitle red="A ARMADILHA DOS PLANTÕES">ESTE É O SEU DIA A DIA:</SectionTitle>
-        
         <div className="space-y-4 mt-8">
           {[
             { icon: <Clock />, title: "Dependência humilhante de grupos de escala" },
@@ -182,106 +173,39 @@ const App: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <div className="mt-16 p-8 bg-zinc-900/50 rounded-2xl border border-white/10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 blur-[50px]" />
-          <p className="text-gray-400 text-sm font-medium leading-relaxed italic">
-            "O médico que vive de plantão avulso é um passageiro da própria história. Eu conheço a frustração de olhar para o saldo bancário e perceber que, apesar de trabalhar exaustivamente, você não é dono do seu próprio tempo."
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-red-600 overflow-hidden">
-              <img src={IMAGES.trust} className="w-full h-full object-cover" alt="Dr. Thiago Costa - Perfil" />
-            </div>
-            <div>
-              <p className="text-white font-black text-xs uppercase tracking-tighter">Dr. Thiago Costa</p>
-              <p className="text-red-600 text-[9px] font-bold uppercase">Workshop Domínio Médico</p>
-            </div>
-          </div>
-        </div>
       </section>
 
-      {/* --- THE EVENT --- */}
-      <section className="py-20 px-6">
-        <div className="bg-red-600 p-8 rounded-[2rem] text-center mb-16 shadow-2xl shadow-red-600/20 border-t border-white/20">
-          <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter mb-4 leading-none">DO PLANTÃO AVULSO <br/> AO CONTROLE TOTAL</h2>
-          <p className="text-white/80 text-sm font-bold uppercase tracking-tight">O mapa realista para a liberdade do médico moderno.</p>
-        </div>
-
-        <div className="space-y-8">
-          {[
-            "A transição estratégica: do plantão avulso ao fixo",
-            "Blindagem financeira e previsibilidade real de caixa",
-            "Posicionamento de autoridade para dominar sua região",
-            "O fim da dependência de escalas controladas por terceiros"
-          ].map((text, i) => (
-            <div key={i} className="flex gap-4">
-              <CheckCircle2 className="text-red-600 shrink-0" size={24} />
-              <p className="text-white font-bold text-lg leading-tight tracking-tight uppercase italic">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- AUTHORITY VIDEOS --- */}
+      {/* --- PROOFS --- */}
       <section className="py-20 px-6 bg-[#0a0a0a]">
         <SectionTitle red="PROVA DE REPUTAÇÃO">AUTORIDADE NO MUNDO REAL</SectionTitle>
-        
         <div className="mb-10">
           <p className="text-gray-400 text-sm font-bold leading-relaxed uppercase tracking-tight border-l-2 border-red-600 pl-4 italic">
-            O Workshop Domínio Médico não nasce de teorias de marketing. Ele é a sistematização de um método validado no campo de batalha hospitalar, reconhecido por líderes públicos e colegas de profissão muito antes de se tornar este evento.
+            O Workshop Domínio Médico é a sistematização de um método validado no campo de batalha hospitalar, reconhecido por líderes públicos e colegas.
           </p>
         </div>
-
         <VideoCard 
-          title="RECONHECIMENTO INSTITUCIONAL: A autoridade e o impacto do método reconhecidos publicamente pelo Prefeito da cidade."
+          title="RECONHECIMENTO INSTITUCIONAL: A autoridade do método reconhecida publicamente."
           thumbnail={IMAGES.leadership}
         />
-
         <VideoCard 
-          title="LIDERANÇA OPERACIONAL: O depoimento de quem vivencia a transformação da rotina médica diariamente no ambiente hospitalar."
+          title="LIDERANÇA OPERACIONAL: A transformação da rotina médica no ambiente hospitalar."
           thumbnail={IMAGES.professional}
         />
       </section>
 
-      {/* --- PRICING & CLOSING --- */}
+      {/* --- PRICING --- */}
       <section className="pt-20 pb-32 px-6 relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-600/10 blur-[120px] -z-10 rounded-full" />
-        
         <div className="text-center mb-12">
           <p className="text-red-500 font-black uppercase text-xs tracking-[0.4em] mb-4">Acesso Exclusivo ao 1º Lote</p>
           <h2 className="text-6xl font-black text-white tracking-tighter uppercase italic leading-[0.8]">
             APENAS <br/> <span className="text-white">R$ 27</span>
           </h2>
-          <div className="mt-4 inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-md">
-            <span className="text-gray-500 line-through text-lg font-bold">DE R$ 197</span>
-          </div>
         </div>
-
-        <div className="mb-12 space-y-4 max-w-xs mx-auto">
-          <p className="text-gray-400 text-sm font-bold text-center leading-tight">
-            Por menos do que o valor de um lanche frio em um plantão noturno, você garante o conhecimento que vai te tirar da submissão às escalas alheias.
-          </p>
-          <p className="text-white font-black text-center uppercase italic text-lg leading-tight">
-            Manter sua rotina como está <span className="text-red-600">custa muito mais caro</span> que seu ingresso.
-          </p>
-        </div>
-
         <CTAButton />
-
-        <div className="mt-12 flex flex-col items-center gap-6 opacity-40">
-          <div className="flex items-center gap-3">
-            <ShieldCheck size={20} className="text-red-600" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Pagamento 100% Seguro</span>
-          </div>
-          <div className="flex items-center gap-8">
-            <Lock size={20} />
-            <Users size={20} />
-            <TrendingUp size={20} />
-          </div>
-        </div>
       </section>
 
-      {/* --- FINAL STICKY CTA --- */}
+      {/* --- STICKY --- */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black/80 backdrop-blur-xl border-t border-white/10 flex items-center justify-between shadow-2xl">
          <div className="flex flex-col">
             <span className="text-red-500 text-[10px] font-black uppercase tracking-tighter">Workshop Domínio Médico</span>
@@ -291,7 +215,7 @@ const App: React.FC = () => {
            onClick={() => safeOpen('https://checkout.exemplo.com')}
            className="px-6 py-3 bg-red-600 text-white font-black text-[0.75rem] uppercase italic rounded-lg active:scale-95 transition-transform led-active ring-1 ring-red-500/50 antialiased"
          >
-           GARANTIR MEU INGRESSO | LOTE 01
+           GARANTIR AGORA
          </button>
       </div>
 
