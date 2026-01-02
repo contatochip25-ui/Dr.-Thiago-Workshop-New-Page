@@ -18,6 +18,8 @@
             color: #ffffff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
         }
         h1, h2, h3, h4, .font-heading {
             font-family: 'Lexend', sans-serif;
@@ -30,7 +32,7 @@
             background: transparent;
         }
 
-        /* PREMIUM LED GLOW ANIMATION */
+        /* PREMIUM LED GLOW ANIMATION - FIXED FOR PRODUCTION */
         @keyframes led-pulse {
             0%, 100% { 
                 box-shadow: 0 0 12px rgba(220, 38, 38, 0.5), 0 0 0 1px rgba(220, 38, 38, 0.4);
@@ -40,7 +42,7 @@
             }
         }
         .led-active {
-            animation: led-pulse 3s infinite ease-in-out;
+            animation: led-pulse 3s infinite ease-in-out !important;
         }
     </style>
 <script type="importmap">

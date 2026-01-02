@@ -4,7 +4,6 @@ import {
   AlertCircle, 
   Calendar, 
   Clock, 
-  MapPin, 
   Play, 
   ShieldCheck, 
   TrendingUp, 
@@ -12,19 +11,27 @@ import {
   CheckCircle2,
   Lock,
   ArrowRight,
-  Zap,
   Users,
   Video
 } from 'lucide-react';
 
 /**
  * IMAGES PROVIDED BY USER
+ * Note: Encoded special characters in URLs to ensure cross-platform build stability.
  */
 const IMAGES = {
-  mainAuthority: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagobraçocruzado.png",
+  mainAuthority: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagobra%C3%A7ocruzado.png",
   leadership: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago3.jpg",
   professional: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagofoto.jpg",
   trust: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago2.jpg"
+};
+
+// --- Utilities ---
+
+const safeOpen = (url: string) => {
+  if (typeof window !== 'undefined') {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 };
 
 // --- Components ---
@@ -44,18 +51,23 @@ const ProgressBar: React.FC = () => (
   </div>
 );
 
-const CTAButton: React.FC<{ className?: string; hasLed?: boolean }> = ({ className, hasLed }) => (
+interface CTAButtonProps {
+  className?: string;
+  hasLed?: boolean;
+}
+
+const CTAButton: React.FC<CTAButtonProps> = ({ className = '', hasLed = false }) => (
   <div className={`flex flex-col items-center w-full px-4 ${className}`}>
     <button 
-      onClick={() => window.open('https://checkout.exemplo.com', '_blank')}
+      onClick={() => safeOpen('https://checkout.exemplo.com')}
       className={`group relative w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[6px] border-red-900 overflow-hidden antialiased ${
         hasLed 
-        ? 'text-[1.05rem] led-active shadow-none ring-1 ring-red-500/40' 
+        ? 'text-[1.05rem] led-active ring-1 ring-red-500/40' 
         : 'text-[1.1rem] shadow-[0_0_20px_rgba(220,38,38,0.4)] ring-1 ring-red-500/20'
       }`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12" />
-      <span className="relative z-10 flex items-center justify-center gap-2 drop-shadow-none">
+      <span className="relative z-10 flex items-center justify-center gap-2">
         GARANTIR MEU INGRESSO | LOTE 01
         <ArrowRight size={20} />
       </span>
@@ -69,8 +81,9 @@ const VideoCard: React.FC<{ title: string; thumbnail: string }> = ({ title, thum
     <div className="relative aspect-video flex items-center justify-center bg-black group">
       <img 
         src={thumbnail} 
-        alt="Thumbnail" 
+        alt="Thumbnail Preview" 
         className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500"
+        loading="lazy"
       />
       <div className="z-10 bg-red-600 p-5 rounded-full shadow-2xl group-hover:scale-110 transition-transform cursor-pointer">
         <Play className="fill-current text-white ml-1" size={28} />
@@ -100,7 +113,6 @@ const App: React.FC = () => {
       
       {/* --- HERO / FIRST FOLD --- */}
       <section className="relative min-h-[98vh] flex flex-col justify-end overflow-hidden">
-        {/* TOP BADGE */}
         <div className="absolute top-0 left-0 right-0 z-30 pt-6 px-6 text-center">
            <span className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-red-600/20">
              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
@@ -108,25 +120,21 @@ const App: React.FC = () => {
            </span>
         </div>
 
-        {/* Dr. Thiago Photo */}
         <div className="absolute inset-0 z-0">
           <img 
             src={IMAGES.mainAuthority} 
-            alt="Dr. Thiago Costa" 
+            alt="Dr. Thiago Costa - Autoridade Médica" 
             className="w-full h-full object-cover object-top filter brightness-[0.7] contrast-[1.1]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-transparent" />
         </div>
 
-        {/* Content Overlay */}
         <div className="relative z-10 px-6 pb-12">
-          {/* HEADLINE */}
           <h1 className="text-[2.6rem] sm:text-5xl font-black text-white leading-[0.85] tracking-tighter uppercase italic mb-6">
             ATÉ QUANDO O SEU CRM SERÁ <span className="text-red-600">REFÉM</span> DE UMA ESCALA QUE VOCÊ NÃO CONTROLA?
           </h1>
 
-          {/* SUBHEADLINE */}
           <div className="space-y-4 mb-10 max-w-[320px]">
             <p className="text-lg text-gray-200 font-bold leading-tight">
               A faculdade te ensinou medicina, mas te deixou refém de plantões avulsos e grupos de WhatsApp para fechar o mês.
@@ -136,7 +144,6 @@ const App: React.FC = () => {
             </p>
           </div>
 
-          {/* PREMIUM INFO BLOCK */}
           <div className="flex justify-between items-center mb-6 py-4 border-y border-white/10 bg-black/40 backdrop-blur-md rounded-lg px-2">
             <div className="flex flex-col items-center flex-1 border-r border-white/5">
               <Calendar className="text-red-600 mb-1" size={16} />
@@ -183,7 +190,7 @@ const App: React.FC = () => {
           </p>
           <div className="mt-6 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full border border-red-600 overflow-hidden">
-              <img src={IMAGES.trust} className="w-full h-full object-cover" />
+              <img src={IMAGES.trust} className="w-full h-full object-cover" alt="Dr. Thiago Costa - Perfil" />
             </div>
             <div>
               <p className="text-white font-black text-xs uppercase tracking-tighter">Dr. Thiago Costa</p>
@@ -238,7 +245,6 @@ const App: React.FC = () => {
 
       {/* --- PRICING & CLOSING --- */}
       <section className="pt-20 pb-32 px-6 relative overflow-hidden">
-        {/* Background glow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-600/10 blur-[120px] -z-10 rounded-full" />
         
         <div className="text-center mb-12">
@@ -282,7 +288,7 @@ const App: React.FC = () => {
             <span className="text-white text-xl font-black italic">R$ 27</span>
          </div>
          <button 
-           onClick={() => window.open('https://checkout.exemplo.com', '_blank')}
+           onClick={() => safeOpen('https://checkout.exemplo.com')}
            className="px-6 py-3 bg-red-600 text-white font-black text-[0.75rem] uppercase italic rounded-lg active:scale-95 transition-transform led-active ring-1 ring-red-500/50 antialiased"
          >
            GARANTIR MEU INGRESSO | LOTE 01
