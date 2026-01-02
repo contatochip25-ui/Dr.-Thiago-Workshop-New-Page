@@ -8,17 +8,12 @@ import {
   ShieldCheck, 
   TrendingUp, 
   XCircle,
-  CheckCircle2,
-  Lock,
   ArrowRight,
-  Users,
-  Video
+  Video,
+  Lock,
+  CheckCircle2
 } from 'lucide-react';
 
-/**
- * IMAGES PROVIDED BY USER
- * Note: Encoded special characters in URLs to ensure cross-platform build stability.
- */
 const IMAGES = {
   mainAuthority: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiagobra%C3%A7ocruzado.png",
   leadership: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago3.jpg",
@@ -26,23 +21,19 @@ const IMAGES = {
   trust: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/drthiago2.jpg"
 };
 
-// --- Utilities ---
-
-const safeOpen = (url: string) => {
+const safeOpen = (url: string): void => {
   if (typeof window !== 'undefined') {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 };
 
-// --- Components ---
-
 const ProgressBar: React.FC = () => (
-  <div className="w-full mt-4 px-2">
+  <div className="w-full mt-3 px-2">
     <div className="flex justify-between items-end mb-1">
-      <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">VAGAS DO 1º LOTE PREENCHIDAS</span>
-      <span className="text-xs font-black text-red-500 animate-pulse">92%</span>
+      <span className="text-[8px] font-black text-white/30 uppercase tracking-widest italic">VAGAS LOTE 01: 92% PREENCHIDAS</span>
+      <span className="text-[10px] font-black text-red-500 animate-pulse">92%</span>
     </div>
-    <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+    <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
       <div 
         className="h-full bg-red-600 rounded-full transition-all duration-1000" 
         style={{ width: '92%' }}
@@ -57,19 +48,19 @@ interface CTAButtonProps {
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({ className = '', hasLed = false }) => (
-  <div className={`flex flex-col items-center w-full px-4 ${className}`}>
+  <div className={`flex flex-col items-center w-full ${className}`}>
     <button 
       onClick={() => safeOpen('https://checkout.exemplo.com')}
-      className={`group relative w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[6px] border-red-900 overflow-hidden antialiased ${
+      className={`group relative w-full py-4 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[4px] border-red-900 overflow-hidden antialiased text-[0.95rem] ${
         hasLed 
-        ? 'text-[1.05rem] led-active ring-1 ring-red-500/40' 
-        : 'text-[1.1rem] shadow-[0_0_20px_rgba(220,38,38,0.4)] ring-1 ring-red-500/20'
+        ? 'led-active shadow-[0_0_20px_rgba(220,38,38,0.2)]' 
+        : 'shadow-xl'
       }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 skew-x-12" />
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        GARANTIR MEU INGRESSO | LOTE 01
-        <ArrowRight size={20} />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      <span className="relative z-10 flex items-center justify-center gap-2 italic">
+        GARANTIR MINHA VAGA AGORA
+        <ArrowRight size={18} />
       </span>
     </button>
     <ProgressBar />
@@ -81,15 +72,15 @@ const VideoCard: React.FC<{ title: string; thumbnail: string }> = ({ title, thum
     <div className="relative aspect-video flex items-center justify-center bg-black group">
       <img 
         src={thumbnail} 
-        alt="Thumbnail Preview" 
+        alt="Preview Profissional" 
         className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500"
         loading="lazy"
       />
       <div className="z-10 bg-red-600 p-5 rounded-full shadow-2xl group-hover:scale-110 transition-transform cursor-pointer">
         <Play className="fill-current text-white ml-1" size={28} />
       </div>
-      <div className="absolute bottom-4 left-4 right-4 z-20">
-        <h3 className="text-white font-black text-sm leading-tight uppercase tracking-tight drop-shadow-lg">
+      <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
+        <h3 className="text-white font-black text-[10px] leading-tight uppercase tracking-tight drop-shadow-lg">
           {title}
         </h3>
       </div>
@@ -99,11 +90,11 @@ const VideoCard: React.FC<{ title: string; thumbnail: string }> = ({ title, thum
 );
 
 const SectionTitle: React.FC<{ children: React.ReactNode; red?: string }> = ({ children, red }) => (
-  <div className="mb-12">
-    <h2 className="text-4xl font-black text-white leading-[0.85] tracking-tighter uppercase italic">
+  <div className="mb-8">
+    <h2 className="text-3xl font-black text-white leading-[0.85] tracking-tighter uppercase italic">
       {children} <span className="text-red-600 block mt-1">{red}</span>
     </h2>
-    <div className="w-20 h-2 bg-red-600 mt-6" />
+    <div className="w-12 h-1 bg-red-600 mt-4" />
   </div>
 );
 
@@ -111,193 +102,145 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] selection:bg-red-600 selection:text-white pb-20">
       
-      {/* --- HERO / FIRST FOLD --- */}
-      <section className="relative min-h-[98vh] flex flex-col justify-end overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 z-30 pt-6 px-6 text-center">
-           <span className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-red-600/20">
-             <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+      {/* --- HERO: PRIMEIRA DOBRA COMPLETA --- */}
+      <section className="relative h-[100dvh] flex flex-col overflow-hidden">
+        
+        {/* TOP STATUS */}
+        <div className="absolute top-0 left-0 right-0 z-30 pt-4 px-6 flex justify-center pointer-events-none">
+           <span className="bg-red-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.2em] border border-white/10">
              🔴 EXCLUSIVO PARA MÉDICOS
            </span>
         </div>
 
-        <div className="absolute inset-0 z-0">
+        {/* 1. IMAGEM DO DR (TOP) */}
+        <div className="relative w-full h-[42vh] shrink-0 overflow-hidden">
           <img 
             src={IMAGES.mainAuthority} 
-            alt="Dr. Thiago Costa - Autoridade Médica" 
-            className="w-full h-full object-cover object-top filter brightness-[0.7] contrast-[1.1]"
+            alt="Dr. Thiago Costa" 
+            className="w-full h-full object-cover object-top filter brightness-[0.85] contrast-[1.05]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent" />
         </div>
 
-        <div className="relative z-10 px-6 pb-12">
-          <h1 className="text-[2.6rem] sm:text-5xl font-black text-white leading-[0.85] tracking-tighter uppercase italic mb-6">
-            ATÉ QUANDO O SEU CRM SERÁ <span className="text-red-600">REFÉM</span> DE UMA ESCALA QUE VOCÊ NÃO CONTROLA?
-          </h1>
+        {/* 2. BARRA DE INFO (CENTER - ESTILO REFERÊNCIA 2) */}
+        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mb-2 shrink-0">
+          <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center gap-1.5">
+              <Calendar className="text-[#d4a373]" size={14} strokeWidth={2.5} />
+              <span className="text-[13px] text-white font-black tracking-tight">01 de janeiro</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Clock className="text-[#d4a373]" size={14} strokeWidth={2.5} />
+              <span className="text-[13px] text-white font-black tracking-tight text-nowrap">às 20:00h</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <Video className="text-[#d4a373]" size={14} strokeWidth={2.5} />
+            <span className="text-[12px] text-[#d4a373] font-bold tracking-tight uppercase">
+              Ao vivo & Online via <span className="font-black">ZOOM</span>
+            </span>
+          </div>
+        </div>
 
-          <div className="space-y-4 mb-10 max-w-[320px]">
-            <p className="text-lg text-gray-200 font-bold leading-tight">
-              A faculdade te ensinou medicina, mas te deixou refém de plantões avulsos e grupos de WhatsApp para fechar o mês.
-            </p>
-            <p className="text-sm text-gray-400 font-medium italic border-l-2 border-red-600 pl-3">
-              Enquanto você não dominar sua própria agenda, seu sucesso será apenas um intervalo entre um plantão e outro.
+        {/* 3. CONTEÚDO (BOTTOM) - TUDO VISÍVEL SEM SCROLL */}
+        <div className="relative z-10 px-6 flex flex-col flex-grow justify-between pb-8 max-w-md mx-auto w-full">
+          
+          <div className="text-center">
+            <div className="w-10 h-0.5 bg-red-600 mx-auto mb-3 opacity-50" />
+            <h1 className="text-[1.65rem] font-black text-white leading-[0.95] tracking-tighter uppercase italic mb-3">
+              ATÉ QUANDO O SEU CRM SERÁ <span className="text-red-600">REFÉM</span> DE UMA ESCALA?
+            </h1>
+            <p className="text-[0.85rem] text-gray-300 font-bold leading-tight px-2">
+              A faculdade te ensinou medicina, mas te deixou refém de plantões avulsos e grupos de WhatsApp.
             </p>
           </div>
 
-          <div className="flex justify-between items-center mb-6 py-4 border-y border-white/10 bg-black/40 backdrop-blur-md rounded-lg px-2">
-            <div className="flex flex-col items-center flex-1 border-r border-white/5">
-              <Calendar className="text-red-600 mb-1" size={16} />
-              <span className="text-[10px] text-white font-black uppercase tracking-tighter">01 Fev</span>
-            </div>
-            <div className="flex flex-col items-center flex-1 border-r border-white/5">
-              <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
-                <span className="text-[10px] text-white font-black uppercase tracking-tighter">Ao Vivo</span>
-              </div>
-            </div>
-            <div className="flex flex-col items-center flex-1">
-              <Video className="text-red-600 mb-1" size={16} />
-              <span className="text-[10px] text-white font-black uppercase tracking-tighter">Via Zoom</span>
+          <div className="mt-auto">
+            <CTAButton hasLed={true} />
+            
+            {/* Trust Signals minimalistas abaixo do botão */}
+            <div className="flex justify-center gap-4 mt-5 opacity-30 grayscale scale-90">
+               <div className="flex items-center gap-1">
+                  <ShieldCheck size={12} className="text-white" />
+                  <span className="text-[7px] font-black uppercase tracking-tighter">Compra Segura</span>
+               </div>
+               <div className="flex items-center gap-1">
+                  <CheckCircle2 size={12} className="text-white" />
+                  <span className="text-[7px] font-black uppercase tracking-tighter">Garantia</span>
+               </div>
+               <div className="flex items-center gap-1">
+                  <Lock size={12} className="text-white" />
+                  <span className="text-[7px] font-black uppercase tracking-tighter">Privacidade</span>
+               </div>
             </div>
           </div>
-
-          <CTAButton className="!px-0" hasLed={true} />
         </div>
       </section>
 
-      {/* --- PAIN / IDENTIFICATION --- */}
+      {/* --- SEÇÃO DE DORES --- */}
       <section className="py-20 px-6 bg-[#0a0a0a] border-y border-white/5">
-        <SectionTitle red="A ARMADILHA DOS PLANTÕES">ESTE É O SEU DIA A DIA:</SectionTitle>
-        
-        <div className="space-y-4 mt-8">
-          {[
-            { icon: <Clock />, title: "Dependência humilhante de grupos de escala" },
-            { icon: <XCircle />, title: "Incerteza de quanto cairá na conta no dia 30" },
-            { icon: <AlertCircle />, title: "Noites e feriados rifados pelo lucro alheio" },
-            { icon: <TrendingUp />, title: "Esgotamento físico que drena sua autoridade" },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-4 p-5 bg-gradient-to-r from-white/5 to-transparent border-l-4 border-red-600">
-              <div className="text-red-600">{item.icon}</div>
-              <h4 className="text-white font-black uppercase text-sm tracking-tight italic">{item.title}</h4>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 p-8 bg-zinc-900/50 rounded-2xl border border-white/10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 blur-[50px]" />
-          <p className="text-gray-400 text-sm font-medium leading-relaxed italic">
-            "O médico que vive de plantão avulso é um passageiro da própria história. Eu conheço a frustração de olhar para o saldo bancário e perceber que, apesar de trabalhar exaustivamente, você não é dono do seu próprio tempo."
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border border-red-600 overflow-hidden">
-              <img src={IMAGES.trust} className="w-full h-full object-cover" alt="Dr. Thiago Costa - Perfil" />
-            </div>
-            <div>
-              <p className="text-white font-black text-xs uppercase tracking-tighter">Dr. Thiago Costa</p>
-              <p className="text-red-600 text-[9px] font-bold uppercase">Workshop Domínio Médico</p>
-            </div>
+        <div className="max-w-md mx-auto">
+          <SectionTitle red="A ARMADILHA DOS PLANTÕES">ESTE É O SEU DIA A DIA:</SectionTitle>
+          <div className="space-y-4">
+            {[
+              { icon: <Clock />, title: "Dependência humilhante de grupos de escala" },
+              { icon: <XCircle />, title: "Incerteza de rendimento no dia 30" },
+              { icon: <AlertCircle />, title: "Noites e feriados rifados pelo lucro alheio" },
+              { icon: <TrendingUp />, title: "Esgotamento físico que drena sua autoridade" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 p-4 bg-white/5 border-l-4 border-red-600 rounded-r-lg">
+                <div className="text-red-600">{item.icon}</div>
+                <h4 className="text-white font-black uppercase text-[10px] tracking-tight italic">{item.title}</h4>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* --- THE EVENT --- */}
-      <section className="py-20 px-6">
-        <div className="bg-red-600 p-8 rounded-[2rem] text-center mb-16 shadow-2xl shadow-red-600/20 border-t border-white/20">
-          <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter mb-4 leading-none">DO PLANTÃO AVULSO <br/> AO CONTROLE TOTAL</h2>
-          <p className="text-white/80 text-sm font-bold uppercase tracking-tight">O mapa realista para a liberdade do médico moderno.</p>
-        </div>
-
-        <div className="space-y-8">
-          {[
-            "A transição estratégica: do plantão avulso ao fixo",
-            "Blindagem financeira e previsibilidade real de caixa",
-            "Posicionamento de autoridade para dominar sua região",
-            "O fim da dependência de escalas controladas por terceiros"
-          ].map((text, i) => (
-            <div key={i} className="flex gap-4">
-              <CheckCircle2 className="text-red-600 shrink-0" size={24} />
-              <p className="text-white font-bold text-lg leading-tight tracking-tight uppercase italic">{text}</p>
-            </div>
-          ))}
+      {/* --- PROVAS --- */}
+      <section className="py-20 px-6 bg-black">
+        <div className="max-w-md mx-auto">
+          <SectionTitle red="PROVA DE REPUTAÇÃO">AUTORIDADE NO MUNDO REAL</SectionTitle>
+          <VideoCard 
+            title="RECONHECIMENTO INSTITUCIONAL: A autoridade do método reconhecida publicamente."
+            thumbnail={IMAGES.leadership}
+          />
+          <VideoCard 
+            title="LIDERANÇA OPERACIONAL: A transformação da rotina médica no ambiente hospitalar."
+            thumbnail={IMAGES.professional}
+          />
         </div>
       </section>
 
-      {/* --- AUTHORITY VIDEOS --- */}
-      <section className="py-20 px-6 bg-[#0a0a0a]">
-        <SectionTitle red="PROVA DE REPUTAÇÃO">AUTORIDADE NO MUNDO REAL</SectionTitle>
-        
-        <div className="mb-10">
-          <p className="text-gray-400 text-sm font-bold leading-relaxed uppercase tracking-tight border-l-2 border-red-600 pl-4 italic">
-            O Workshop Domínio Médico não nasce de teorias de marketing. Ele é a sistematização de um método validado no campo de batalha hospitalar, reconhecido por líderes públicos e colegas de profissão muito antes de se tornar este evento.
-          </p>
-        </div>
-
-        <VideoCard 
-          title="RECONHECIMENTO INSTITUCIONAL: A autoridade e o impacto do método reconhecidos publicamente pelo Prefeito da cidade."
-          thumbnail={IMAGES.leadership}
-        />
-
-        <VideoCard 
-          title="LIDERANÇA OPERACIONAL: O depoimento de quem vivencia a transformação da rotina médica diariamente no ambiente hospitalar."
-          thumbnail={IMAGES.professional}
-        />
-      </section>
-
-      {/* --- PRICING & CLOSING --- */}
-      <section className="pt-20 pb-32 px-6 relative overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-600/10 blur-[120px] -z-10 rounded-full" />
-        
-        <div className="text-center mb-12">
-          <p className="text-red-500 font-black uppercase text-xs tracking-[0.4em] mb-4">Acesso Exclusivo ao 1º Lote</p>
-          <h2 className="text-6xl font-black text-white tracking-tighter uppercase italic leading-[0.8]">
+      {/* --- PRICING --- */}
+      <section className="pt-20 pb-44 px-6 bg-black relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-red-600/5 blur-[80px] -z-10 rounded-full" />
+        <div className="max-w-md mx-auto text-center">
+          <p className="text-red-500 font-black uppercase text-[9px] tracking-[0.5em] mb-3 italic">Acesso Exclusivo</p>
+          <h2 className="text-6xl font-black text-white tracking-tighter uppercase italic leading-[0.8] mb-10">
             APENAS <br/> <span className="text-white">R$ 27</span>
           </h2>
-          <div className="mt-4 inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-md">
-            <span className="text-gray-500 line-through text-lg font-bold">DE R$ 197</span>
-          </div>
-        </div>
-
-        <div className="mb-12 space-y-4 max-w-xs mx-auto">
-          <p className="text-gray-400 text-sm font-bold text-center leading-tight">
-            Por menos do que o valor de um lanche frio em um plantão noturno, você garante o conhecimento que vai te tirar da submissão às escalas alheias.
-          </p>
-          <p className="text-white font-black text-center uppercase italic text-lg leading-tight">
-            Manter sua rotina como está <span className="text-red-600">custa muito mais caro</span> que seu ingresso.
-          </p>
-        </div>
-
-        <CTAButton />
-
-        <div className="mt-12 flex flex-col items-center gap-6 opacity-40">
-          <div className="flex items-center gap-3">
-            <ShieldCheck size={20} className="text-red-600" />
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Pagamento 100% Seguro</span>
-          </div>
-          <div className="flex items-center gap-8">
-            <Lock size={20} />
-            <Users size={20} />
-            <TrendingUp size={20} />
-          </div>
+          <CTAButton hasLed={true} />
         </div>
       </section>
 
-      {/* --- FINAL STICKY CTA --- */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black/80 backdrop-blur-xl border-t border-white/10 flex items-center justify-between shadow-2xl">
+      {/* --- STICKY FOOTER --- */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black/95 backdrop-blur-2xl border-t border-white/10 flex items-center justify-between shadow-2xl">
          <div className="flex flex-col">
-            <span className="text-red-500 text-[10px] font-black uppercase tracking-tighter">Workshop Domínio Médico</span>
-            <span className="text-white text-xl font-black italic">R$ 27</span>
+            <span className="text-red-600 text-[8px] font-black uppercase tracking-tighter">Workshop Domínio Médico</span>
+            <span className="text-white text-xl font-black italic tracking-tighter">R$ 27</span>
          </div>
          <button 
            onClick={() => safeOpen('https://checkout.exemplo.com')}
-           className="px-6 py-3 bg-red-600 text-white font-black text-[0.75rem] uppercase italic rounded-lg active:scale-95 transition-transform led-active ring-1 ring-red-500/50 antialiased"
+           className="px-5 py-2.5 bg-red-600 text-white font-black text-[9px] uppercase italic rounded-lg active:scale-95 transition-all shadow-lg"
          >
-           GARANTIR MEU INGRESSO | LOTE 01
+           GARANTIR AGORA
          </button>
       </div>
 
-      <footer className="py-12 px-6 text-center bg-black border-t border-white/5">
-        <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest leading-loose">
-          © 2024 Dr. Thiago Costa <br/> Todos os direitos reservados.
+      <footer className="py-12 px-6 text-center bg-black opacity-30">
+        <p className="text-[8px] text-gray-500 font-bold uppercase tracking-[0.2em] leading-loose">
+          © 2024 Dr. Thiago Costa | Todos os direitos reservados.
         </p>
       </footer>
     </div>
