@@ -213,7 +213,7 @@ const App: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5">
               <Clock className="text-[#d4a373]" size={14} strokeWidth={2.5} />
-              <span className="text-[13px] md:text-base text-white font-black tracking-tight">20:00h - Ao Vivo</span>
+              <span className="text-[13px] md:text-base text-white font-black tracking-tight">19:00h - Ao Vivo</span>
             </div>
           </div>
           <div className="flex items-center justify-center gap-2">
@@ -535,7 +535,7 @@ const App: React.FC = () => {
             <a href={`https://${DOMAIN}`} target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors">
               {DOMAIN}
             </a> <br/>
-            © 2024 - Todos os direitos reservados.
+            © 2026 - Todos os direitos reservados.
           </p>
         </div>
       </footer>
