@@ -195,7 +195,7 @@ const App: React.FC = () => {
            </span>
         </div>
 
-        {/* Imagem para Mobile (permanece como antes) */}
+        {/* Imagem para Mobile */}
         <div className="relative w-full h-[45vh] shrink-0 overflow-hidden md:hidden">
           <img 
             src={IMAGES.mainAuthority} 
@@ -379,7 +379,7 @@ const App: React.FC = () => {
             <div className="relative p-1 bg-gradient-to-br from-red-600 to-transparent rounded-full shadow-[0_0_40px_rgba(220,38,38,0.4)]">
               <img src={IMAGES.trustPhoto} alt="Confiança e Sucesso" className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full border-2 border-black" />
               <div className="absolute bottom-0 right-0 bg-red-600 p-2 md:p-3 rounded-full text-white shadow-lg">
-                CheckCircle2 size={24} />
+                <CheckCircle2 size={24} />
               </div>
             </div>
           </div>
@@ -471,7 +471,7 @@ const App: React.FC = () => {
             />
             <FAQItem 
               question="Por que o valor é de apenas R$ 27,00?" 
-              answer="O valor é simbólico para filtrar os médicos realmente comprometidos. Uma única escala fixa paga esse investimento por years. O custo real é continuar dependendo da sorte." 
+              answer="O valor é simbólico para filtrar os médicos realmente comprometidos. Uma única escala fixa paga esse investimento por anos. O custo real é continuar dependendo da sorte." 
             />
             <FAQItem 
               question="O evento ficará gravado?" 
