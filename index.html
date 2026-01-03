@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -46,11 +45,44 @@
             animation: led-pulse 3s infinite ease-in-out !important;
             border-color: rgba(220, 38, 38, 0.5) !important;
         }
+
+        @keyframes infinite-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .animate-infinite-scroll {
+            animation: infinite-scroll 40s linear infinite;
+        }
+        .animate-infinite-scroll:hover {
+            animation-play-state: paused;
+        }
         
         #root {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 <script type="importmap">
