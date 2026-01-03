@@ -145,33 +145,9 @@ const App: React.FC = () => {
   const authPhotos = [IMAGES.authPhoto1, IMAGES.authPhoto2, IMAGES.authPhoto3];
 
   useEffect(() => {
-    // Meta Pixel Code - Corrected implementation for React/SPA
-    const fbPixelId = '1595336251600735';
-    
-    // Check if window is defined (client-side) and if fbq is already initialized
-    if (typeof window !== 'undefined') {
-      if (!(window as any).fbq) {
-        (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
-          if (f.fbq) return;
-          n = f.fbq = function() {
-            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-          };
-          if (!f._fbq) f._fbq = n;
-          n.push = n;
-          n.loaded = !0;
-          n.version = '2.0';
-          n.queue = [];
-          t = b.createElement(e);
-          t.async = !0;
-          t.src = v;
-          s = b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t, s);
-        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-        
-        (window as any).fbq('init', fbPixelId);
-      }
-      
-      // Track PageView on mount
+    // Meta Pixel Tracking Call
+    // The library is initialized in index.html to ensure availability
+    if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'PageView');
     }
   }, []);
@@ -341,7 +317,7 @@ const App: React.FC = () => {
               { 
                 icon: <Briefcase size={22} />, 
                 title: "1. Engenharia de Posicionamento na Unidade", 
-                desc: "Aprenda como ser visto como autoridade desde os primeiros minutos, conquistar respeito imedias da equipe e nunca mais ser tratado como “tapa-buraco”." 
+                desc: "Aprenda como ser visto como autoridade desde os primeiros minutos, conquistar respeito imediato da equipe e nunca mais ser tratado como “tapa-buraco”." 
               },
               { 
                 icon: <Lock size={22} />, 
