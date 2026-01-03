@@ -52,8 +52,8 @@ const safeOpen = (url: string): void => {
 const ProgressBar: React.FC = () => (
   <div className="w-full mt-3 px-2">
     <div className="flex justify-between items-end mb-1">
-      <span className="text-[8px] font-black text-white/30 uppercase tracking-widest italic">LOTE 01: 92% DAS VAGAS PREENCHIDAS</span>
-      <span className="text-[10px] font-black text-red-500 animate-pulse">92%</span>
+      <span className="text-[10px] font-black text-white/40 uppercase tracking-widest italic">LOTE 01: 92% DAS VAGAS PREENCHIDAS</span>
+      <span className="text-[11px] font-black text-red-500 animate-pulse">92%</span>
     </div>
     <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
       <div 
@@ -68,14 +68,14 @@ const CTAButton: React.FC<{ hasLed?: boolean }> = ({ hasLed = false }) => (
   <div className="flex flex-col items-center w-full md:max-w-sm md:mx-auto">
     <button 
       onClick={() => safeOpen(CHECKOUT_URL)}
-      className={`group relative w-full py-4 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[4px] border-red-900 overflow-hidden antialiased text-[0.95rem] ${
+      className={`group relative w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase tracking-tighter rounded-xl transform transition-all active:scale-95 border-b-[4px] border-red-900 overflow-hidden antialiased text-[1.05rem] md:text-[0.95rem] ${
         hasLed ? 'led-active' : ''
       }`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       <span className="relative z-10 flex items-center justify-center gap-2 italic">
         GARANTIR MEU INGRESSO | LOTE 01
-        <ArrowRight size={18} />
+        <ArrowRight size={20} />
       </span>
     </button>
     <ProgressBar />
@@ -109,7 +109,7 @@ const VideoCard: React.FC<{ title: string; thumbnail: string; position?: string;
               <Play className="fill-current text-white ml-1" size={28} />
             </div>
             <div className="absolute bottom-4 left-4 right-4 z-20 text-center">
-              <h3 className="text-white font-black text-[10px] leading-tight uppercase tracking-tight drop-shadow-lg">{title}</h3>
+              <h3 className="text-white font-black text-[12px] md:text-[10px] leading-tight uppercase tracking-tight drop-shadow-lg">{title}</h3>
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none" />
           </>
@@ -122,22 +122,22 @@ const VideoCard: React.FC<{ title: string; thumbnail: string; position?: string;
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-white/5 py-4">
+    <div className="border-b border-white/5 py-5">
       <button onClick={() => setIsOpen(!isOpen)} className="w-full flex justify-between items-center text-left">
-        <span className="text-white font-bold text-xs md:text-sm uppercase tracking-tight pr-4">{question}</span>
-        {isOpen ? <ChevronUp className="text-red-600 shrink-0" size={16} /> : <ChevronDown className="text-gray-600 shrink-0" size={16} />}
+        <span className="text-white font-bold text-[14px] md:text-sm uppercase tracking-tight pr-6">{question}</span>
+        {isOpen ? <ChevronUp className="text-red-600 shrink-0" size={18} /> : <ChevronDown className="text-gray-600 shrink-0" size={18} />}
       </button>
-      {isOpen && <p className="mt-3 text-[13px] md:text-sm text-gray-300 leading-relaxed font-medium">{answer}</p>}
+      {isOpen && <p className="mt-4 text-[15px] md:text-sm text-gray-200 leading-relaxed font-medium">{answer}</p>}
     </div>
   );
 };
 
 const SectionTitle: React.FC<{ children: React.ReactNode; red?: string; center?: boolean }> = ({ children, red, center }) => (
-  <div className={`mb-10 ${center ? 'text-center' : 'text-left'}`}>
-    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[0.85] tracking-tighter uppercase italic">
-      {children} <span className="text-red-600 block mt-1">{red}</span>
+  <div className={`mb-12 ${center ? 'text-center' : 'text-left'}`}>
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[0.9] tracking-tighter uppercase italic">
+      {children} <span className="text-red-600 block mt-2">{red}</span>
     </h2>
-    <div className={`w-12 md:w-20 h-1 bg-red-600 mt-4 ${center ? 'mx-auto' : ''}`} />
+    <div className={`w-14 md:w-20 h-1.5 bg-red-600 mt-5 ${center ? 'mx-auto' : ''}`} />
   </div>
 );
 
@@ -188,32 +188,32 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* MANTENDO ESTRUTURA MOBILE IGUAL */}
-        <div className="absolute top-0 left-0 right-0 z-30 pt-4 px-6 flex justify-center pointer-events-none">
-           <span className="bg-red-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-white/10 shadow-[0_0_15px_rgba(220,38,38,0.3)]">
-             🔴 EXCLUSIVO PARA MÉDICOS
-           </span>
-        </div>
-
-        {/* Imagem para Mobile */}
-        <div className="relative w-full h-[45vh] shrink-0 overflow-hidden md:hidden">
+        {/* Imagem para Mobile - IMPACTO INICIAL NO TOPO */}
+        <div className="relative w-full h-[35vh] shrink-0 overflow-hidden md:hidden">
           <img 
             src={IMAGES.mainAuthority} 
             alt="Dr. Thiago Costa - Maestria de Escala" 
-            className="w-full h-full object-cover object-top filter brightness-[0.85] transition-all duration-700" 
+            className="w-full h-full object-cover object-[center_12%] filter brightness-[0.85] transition-all duration-700" 
           />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050505] to-transparent" />
+          
+          {/* BADGE EXCLUSIVO */}
+          <div className="absolute top-4 left-0 right-0 z-30 flex justify-center pointer-events-none">
+             <span className="bg-red-600/95 backdrop-blur-sm text-white px-5 py-2 rounded-full text-[10px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-white/10 shadow-[0_0_15px_rgba(220,38,38,0.3)]">
+               🔴 EXCLUSIVO PARA MÉDICOS
+             </span>
+          </div>
         </div>
 
-        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mb-2 shrink-0 md:mt-12">
-          <div className="flex items-center justify-center gap-4 md:gap-8">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="text-[#d4a373]" size={14} strokeWidth={2.5} />
-              <span className="text-[13px] md:text-base text-white font-black tracking-tight">08 de fevereiro</span>
+        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mt-4 mb-2 shrink-0 md:mt-12">
+          <div className="flex items-center justify-center gap-5 md:gap-8">
+            <div className="flex items-center gap-2">
+              <Calendar className="text-[#d4a373]" size={15} strokeWidth={2.5} />
+              <span className="text-[14px] md:text-base text-white font-black tracking-tight">08 de fevereiro</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Clock className="text-[#d4a373]" size={14} strokeWidth={2.5} />
-              <span className="text-[13px] md:text-base text-white font-black tracking-tight">19:00h - Ao Vivo</span>
+            <div className="flex items-center gap-2">
+              <Clock className="text-[#d4a373]" size={15} strokeWidth={2.5} />
+              <span className="text-[14px] md:text-base text-white font-black tracking-tight">19:00h - Ao Vivo</span>
             </div>
           </div>
           <div className="flex items-center justify-center gap-2">
@@ -222,20 +222,20 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 px-6 flex flex-col flex-grow justify-between pb-8 max-w-md md:max-w-4xl lg:max-w-5xl md:mx-0 md:pl-16 lg:pl-32 w-full">
+        <div className="relative z-10 px-6 flex flex-col flex-grow justify-start md:justify-center pb-6 md:pb-10 max-w-md md:max-w-4xl lg:max-w-5xl md:mx-0 md:pl-16 lg:pl-32 w-full">
           <div className="text-center md:text-left md:max-w-2xl">
-            <h1 className="text-[1.65rem] md:text-5xl lg:text-7xl font-black text-white leading-[0.95] tracking-tighter uppercase italic mb-3">
+            <h1 className="text-[1.8rem] md:text-5xl lg:text-7xl font-black text-white leading-[0.92] tracking-tighter uppercase italic mb-2 md:mb-4">
               SUA TÉCNICA SALVA VIDAS. <span className="text-red-600">SUA ESTRATÉGIA</span> GARANTE SUA LIBERDADE.
             </h1>
-            <p className="text-[1rem] md:text-xl text-gray-200 font-bold leading-tight px-2 md:px-0 max-w-2xl">
+            <p className="text-[0.825rem] md:text-xl text-gray-100 font-bold leading-[1.25] md:leading-relaxed px-2 md:px-0 max-w-2xl mb-4 md:mb-0">
               O CRM parou de ser um diferencial competitivo. Aprenda a decifrar os bastidores hospitalares e assuma o controle das escalas fixas de elite.
             </p>
           </div>
-          <div className="mt-auto md:mt-12 w-full flex justify-center md:justify-start flex-col">
+          <div className="w-full flex justify-center md:justify-start flex-col">
             <CTAButton hasLed={true} />
-            <div className="flex justify-center md:justify-start gap-4 mt-5 opacity-30 grayscale scale-90 md:scale-100">
-               <div className="flex items-center gap-1"><ShieldCheck size={12} className="text-white" /><span className="text-[7px] md:text-[9px] font-black uppercase italic">Vagas Limitadas Lote 01</span></div>
-               <div className="flex items-center gap-1"><Lock size={12} className="text-white" /><span className="text-[7px] md:text-[9px] font-black uppercase italic">Acesso Imediato</span></div>
+            <div className="flex justify-center md:justify-start gap-5 mt-4 md:mt-6 opacity-40 grayscale scale-90 md:scale-100">
+               <div className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-white" /><span className="text-[9px] md:text-[9px] font-black uppercase italic">Vagas Limitadas Lote 01</span></div>
+               <div className="flex items-center gap-1.5"><Lock size={14} className="text-white" /><span className="text-[9px] md:text-[9px] font-black uppercase italic">Acesso Imediato</span></div>
             </div>
           </div>
         </div>
@@ -245,22 +245,22 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
           <SectionTitle red="DIAGNÓSTICO DO MERCADO">Ser apenas mais um CRM não garante sua escala.</SectionTitle>
-          <div className="space-y-6 text-gray-200 text-[1rem] md:text-lg leading-relaxed">
+          <div className="space-y-8 text-gray-200 text-[1.1rem] md:text-lg leading-relaxed">
             <p className="md:text-center md:max-w-3xl md:mx-auto">
               Enquanto você foca no estetoscópio, o mercado está de olho na sua <strong>postura estratégica</strong>. O cenário mudou: com 38 mil novos médicos entrando no mercado anualmente, o CRM deixou de ser um passaporte para se tornar apenas o requisito mínimo.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14">
               {[
-                { icon: <BadgeAlert />, title: "O REFÉM DO WHATSAPP", desc: "Viver em alerta 24h para não perder a vaga em grupos caóticos de escala." },
-                { icon: <XCircle />, title: "O MÉDICO 'TAPA-BURACO'", desc: "A sensação humilhante de ser tratado como descartável por coordenações amadoras." },
-                { icon: <TrendingUp />, title: "INSEGURANÇA FINANCEIRA", desc: "A angústia de não ter uma escala fixa para planejar o futuro da sua carreira." },
+                { icon: <BadgeAlert size={20} />, title: "O REFÉM DO WHATSAPP", desc: "Viver em alerta 24h para não perder a vaga em grupos caóticos de escala." },
+                { icon: <XCircle size={20} />, title: "O MÉDICO 'TAPA-BURACO'", desc: "A sensação humilhante de ser tratado como descartável por coordenações amadoras." },
+                { icon: <TrendingUp size={20} />, title: "INSEGURANÇA FINANCEIRA", desc: "A angústia de não ter uma escala fixa para planejar o futuro da sua carreira." },
               ].map((item, i) => (
-                <div key={i} className="p-5 bg-white/5 border-l-2 border-red-600 rounded-r-xl md:flex md:flex-col md:items-center md:text-center md:border-l-0 md:border-t-2">
-                  <div className="flex items-center gap-3 mb-2 md:mb-4">
+                <div key={i} className="p-6 bg-white/5 border-l-3 border-red-600 rounded-r-xl md:flex md:flex-col md:items-center md:text-center md:border-l-0 md:border-t-3 transition-colors hover:bg-white/[0.07]">
+                  <div className="flex items-center gap-3 mb-3 md:mb-5">
                     <div className="text-red-600">{item.icon}</div>
-                    <h4 className="text-white font-black uppercase text-[10px] md:text-[12px] italic">{item.title}</h4>
+                    <h4 className="text-white font-black uppercase text-[13px] md:text-[12px] italic tracking-tight">{item.title}</h4>
                   </div>
-                  <p className="text-[13px] md:text-sm text-gray-300 font-medium leading-tight">{item.desc}</p>
+                  <p className="text-[14px] md:text-sm text-gray-300 font-medium leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -272,23 +272,23 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-black relative reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
           <SectionTitle red="O CÓDIGO INVISÍVEL">POR QUE ALGUNS TÊM AS MELHORES ESCALAS?</SectionTitle>
-          <div className="space-y-6 text-gray-200 text-[1rem] md:text-lg leading-relaxed">
+          <div className="space-y-8 text-gray-200 text-[1.1rem] md:text-lg leading-relaxed">
             <p className="md:text-center md:max-w-3xl md:mx-auto">
-              As escalas fixas e seguras operam sob um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
+              As escalas fixas e seguras operam under um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
             </p>
-            <div className="grid grid-cols-2 gap-4 md:max-w-2xl md:mx-auto">
-              <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center h-full">
-                <Target className="mx-auto text-red-600 mb-2" size={32} />
-                <h5 className="text-white font-black text-[10px] md:text-[13px] uppercase italic">Radar da Coordenação</h5>
-                <p className="text-[11px] md:text-xs text-gray-300 mt-1 uppercase">O que os tomadores de decisão realmente observam.</p>
+            <div className="grid grid-cols-2 gap-5 md:max-w-2xl md:mx-auto mt-12">
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center h-full">
+                <Target className="mx-auto text-red-600 mb-3" size={36} />
+                <h5 className="text-white font-black text-[13px] md:text-[13px] uppercase italic leading-none">Radar da Coordenação</h5>
+                <p className="text-[11px] md:text-xs text-gray-400 mt-2 uppercase tracking-tighter">O que os decisores observam.</p>
               </div>
-              <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center h-full">
-                <Scale className="mx-auto text-red-600 mb-2" size={32} />
-                <h5 className="text-white font-black text-[10px] md:text-[13px] uppercase italic">Filtro de Postura</h5>
-                <p className="text-[11px] md:text-xs text-gray-300 mt-1 uppercase">Critérios silenciosos que nenhum livro ensina.</p>
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center h-full">
+                <Scale className="mx-auto text-red-600 mb-3" size={36} />
+                <h5 className="text-white font-black text-[13px] md:text-[13px] uppercase italic leading-none">Filtro de Postura</h5>
+                <p className="text-[11px] md:text-xs text-gray-400 mt-2 uppercase tracking-tighter">Critérios silenciosos de elite.</p>
               </div>
             </div>
-            <div className="bg-red-600/10 p-6 md:p-10 rounded-2xl border border-red-600/30 text-center italic font-bold text-white shadow-xl md:text-xl md:max-w-2xl md:mx-auto">
+            <div className="bg-red-600/10 p-8 md:p-12 rounded-2xl border border-red-600/30 text-center italic font-bold text-white shadow-xl text-[1.1rem] md:text-xl md:max-w-2xl md:mx-auto mt-12 leading-relaxed">
               "Esforço sem estratégia na medicina moderna é o caminho mais rápido para a invisibilidade profissional e o burnout financeiro."
             </div>
           </div>
@@ -299,46 +299,46 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
           <SectionTitle red="PLANO DE AÇÃO">O QUE VOCÊ VAI DOMINAR NO WORKSHOP AO VIVO</SectionTitle>
-          <div className="mb-8 md:text-center">
-            <p className="text-[1rem] md:text-xl text-gray-200 font-bold leading-relaxed mb-6 md:max-w-3xl md:mx-auto">
+          <div className="mb-10 md:text-center">
+            <p className="text-[1.1rem] md:text-xl text-gray-100 font-bold leading-relaxed mb-8 md:max-w-3xl md:mx-auto">
               3 a 4 horas de transformação na sua carreira médica, direto ao ponto. Você vai sair sabendo exatamente como ser o médico estratégico que manda na sua escala, sem depender de plantões caóticos.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               { 
-                icon: <Briefcase size={22} />, 
+                icon: <Briefcase size={26} />, 
                 title: "1. Engenharia de Posicionamento na Unidade", 
                 desc: "Aprenda como ser visto como autoridade desde os primeiros minutos, conquistar respeito imediato da equipe e nunca mais ser tratado como “tapa-buraco”." 
               },
               { 
-                icon: <Lock size={22} />, 
+                icon: <Lock size={26} />, 
                 title: "2. Códigos de Confiança da Coordenação", 
                 desc: "Descubra a linguagem silenciosa que garante sua vaga nas escalas fixas de elite, mesmo sem precisar implorar ou competir nos grupos de WhatsApp." 
               },
               { 
-                icon: <HeartPulse size={22} />, 
+                icon: <HeartPulse size={26} />, 
                 title: "3. Postura de Trincheira e Liderança de Alto Impacto", 
                 desc: "Construa uma presença que faz a equipe confiar em você, tomar decisões rápidas e assumir responsabilidades, sem precisar provar nada para ninguém." 
               },
               { 
-                icon: <Users size={22} />, 
+                icon: <Users size={26} />, 
                 title: "4. Networking Institucional: o Jogo dos Bastidores", 
                 desc: "Saiba como operar nos bastidores das UPAs e grandes centros, garantindo oportunidades que ninguém te conta e colocando você à frente da concorrência." 
               },
               { 
-                icon: <FileText size={22} />, 
+                icon: <FileText size={26} />, 
                 title: "5. Blindagem de Escala: Tornando-se Insubstituível", 
                 desc: "Aprenda a se tornar o médico que a coordenação nunca quer perder, garantindo estabilidade, previsibilidade financeira e liberdade para planejar sua carreira." 
               },
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-5 rounded-2xl bg-black border border-white/5 group hover:border-red-600/50 transition-all md:flex-col md:items-start">
-                <div className="shrink-0 w-12 h-12 bg-red-600/10 rounded-lg flex items-center justify-center text-red-600 group-hover:scale-110 transition-transform">
+              <div key={i} className="flex gap-5 p-6 rounded-2xl bg-black border border-white/5 group hover:border-red-600/50 transition-all md:flex-col md:items-start">
+                <div className="shrink-0 w-14 h-14 bg-red-600/10 rounded-xl flex items-center justify-center text-red-600 group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-white font-black uppercase text-[12px] md:text-[14px] tracking-tight mb-1 italic">{item.title}</h4>
-                  <p className="text-[11px] md:text-xs text-gray-300 leading-tight uppercase font-medium">{item.desc}</p>
+                  <h4 className="text-white font-black uppercase text-[15px] md:text-[14px] tracking-tight mb-2 italic">{item.title}</h4>
+                  <p className="text-[14px] md:text-xs text-gray-300 leading-relaxed uppercase font-medium">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -348,19 +348,40 @@ const App: React.FC = () => {
 
       {/* --- SEÇÃO 5: APRESENTAÇÃO / BIO - DR. THIAGO COSTA --- */}
       <section className="py-24 px-6 bg-black reveal">
-        <div className="max-w-md md:max-w-4xl mx-auto md:grid md:grid-cols-2 md:gap-12 md:items-center">
+        <div className="max-w-md md:max-w-4xl mx-auto md:grid md:grid-cols-2 md:gap-14 md:items-center">
           {/* IMAGEM ESTRATÉGICA: FOTO DE PERFIL (IDENTIDADE) */}
-          <div className="w-full mb-8 md:mb-0 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img src={IMAGES.bioPhoto} alt="Dr. Thiago Costa - Perfil" className="w-full h-auto grayscale-[30%] contrast-[1.1] md:object-cover md:h-[600px]" />
+          <div className="w-full mb-10 md:mb-0 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <img src={IMAGES.bioPhoto} alt="Dr. Thiago Costa - Perfil" className="w-full h-auto grayscale-[20%] contrast-[1.1] md:object-cover md:h-[600px]" />
           </div>
           <div>
             <SectionTitle red="MÉDICO DE TRINCHEIRA">QUEM É O DR. THIAGO COSTA</SectionTitle>
-            <div className="space-y-6 text-gray-200 text-[1rem] md:text-lg leading-relaxed">
+            <div className="space-y-6 text-gray-100 text-[1.1rem] md:text-lg leading-relaxed">
               <p>
-                O Dr. Thiago Costa não é um influenciador. Ele é um médico que construiu sua carreira no caos das trincheiras, passando por UPAs, grandes centros e a gestão hospitalar real.
+                O Dr. Thiago Costa não construiu sua carreira em palco, nem em rede social.
+                Ele construiu na prática — onde a medicina é testada de verdade.
               </p>
               <p>
-                Respeitado por equipes de enfermagem e coordenações técnicas, ele decodificou os padrões que fazem um médico ser visto as uma autoridade imediata ou como apenas mais um nome em uma lista. Sua abordagem é pragmática: transformar a insegurança do recém-formado na clareza do médico estratégico que comanda sua própria agenda.
+                Enquanto muitos saem da faculdade cheios de teoria e pouca direção, ele enfrentou o que quase todo médico recém-formado conhece bem: plantões exaustivos, ambientes caóticos, pressão constante e decisões que não admitem erro.
+              </p>
+              <p>
+                UPAs lotadas. Grandes centros. Gestão hospitalar real.
+                Foi ali, no dia a dia duro da profissão, que ele aprendeu algo que a faculdade nunca ensinou.
+              </p>
+              <p>
+                Ele percebeu que não é só competência técnica que define quem cresce na medicina.
+                Existem padrões claros que fazem um médico ser respeitado, valorizado e chamado — enquanto outros, igualmente formados, ficam presos a plantões mal pagos e sem previsibilidade.
+              </p>
+              <p>
+                Respeitado por equipes de enfermagem, coordenações técnicas e gestores, o Dr. Thiago passou a ser visto não como “mais um nome na escala”, mas como referência.
+              </p>
+              <p>
+                Hoje, sua missão é clara:
+                encurtar o caminho de quem está começando, transformando a insegurança do recém-formado na clareza de um médico estratégico — que entende o jogo, conquista espaço e passa a comandar a própria agenda.
+              </p>
+              <p>
+                Sem promessas irreais.
+                Sem atalhos.
+                Só o que funciona no mundo real da medicina.
               </p>
             </div>
           </div>
@@ -375,43 +396,41 @@ const App: React.FC = () => {
           </div>
           
           {/* FOTO CENTRAL DE CONFIANÇA */}
-          <div className="flex justify-center mb-16">
-            <div className="relative p-1 bg-gradient-to-br from-red-600 to-transparent rounded-full shadow-[0_0_40px_rgba(220,38,38,0.4)]">
-              <img src={IMAGES.trustPhoto} alt="Confiança e Sucesso" className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full border-2 border-black" />
-              <div className="absolute bottom-0 right-0 bg-red-600 p-2 md:p-3 rounded-full text-white shadow-lg">
-                <CheckCircle2 size={24} />
+          <div className="flex justify-center mb-20">
+            <div className="relative p-1.5 bg-gradient-to-br from-red-600 to-transparent rounded-full shadow-[0_0_50px_rgba(220,38,38,0.4)]">
+              <img src={IMAGES.trustPhoto} alt="Confiança e Sucesso" className="w-36 h-36 md:w-52 md:h-52 object-cover rounded-full border-2 border-black" />
+              <div className="absolute bottom-0 right-0 bg-red-600 p-3 md:p-4 rounded-full text-white shadow-lg">
+                <CheckCircle2 size={28} />
               </div>
             </div>
           </div>
 
-          {/* CARROSSEL AUTOMÁTICO DE AUTORIDADE */}
-          <div className="mb-20 relative">
-            <p className="text-red-600 font-black uppercase text-[10px] md:text-xs tracking-[0.4em] mb-8 italic">Círculo de Influência e Autoridade</p>
+          {/* CARROSSEL AUTOMÁTICO DE AUTORIDADE --- */}
+          <div className="mb-24 relative">
+            <p className="text-red-600 font-black uppercase text-[12px] md:text-xs tracking-[0.5em] mb-10 italic">Círculo de Influência e Autoridade</p>
             
             <div className="flex overflow-hidden group/slider relative w-full">
-              {/* Duplicando as fotos para criar o efeito de loop infinito */}
-              <div className="flex animate-infinite-scroll py-4 gap-4 md:gap-8">
+              <div className="flex animate-infinite-scroll py-6 gap-6 md:gap-10">
                 {[...authPhotos, ...authPhotos].map((img, idx) => (
-                  <div key={idx} className="shrink-0 w-[260px] md:w-[320px] lg:w-[380px]">
+                  <div key={idx} className="shrink-0 w-[280px] md:w-[340px] lg:w-[400px]">
                     <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group relative bg-[#111]">
                       <img 
                         src={img} 
                         alt={`Dr. Thiago Costa Autoridade ${idx + 1}`} 
-                        className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
+                        className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                     </div>
                   </div>
                 ))}
               </div>
-              {/* Fade out nas laterais para elegância */}
-              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none" />
             </div>
           </div>
 
-          {/* DEPOIMENTOS EM VÍDEO */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:max-w-4xl md:mx-auto px-6">
+          {/* DEPOIMENTOS EM VÍDEO --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:max-w-4xl md:mx-auto px-6">
              <VideoCard 
                title="RECOMENDAÇÃO INSTITUCIONAL: O impacto profissional nas trincheiras." 
                thumbnail={IMAGES.testimonial1} 
@@ -430,26 +449,26 @@ const App: React.FC = () => {
       {/* --- SEÇÃO 7: PARA QUEM É / PARA QUEM NÃO É --- */}
       <section className="py-24 px-6 bg-black reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-white/5 p-8 rounded-3xl border border-white/5">
-              <h3 className="text-green-500 font-black text-xl md:text-2xl uppercase italic mb-6 flex items-center gap-2">
-                <CheckCircle2 /> O WORKSHOP É PARA VOCÊ:
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="bg-white/5 p-10 rounded-3xl border border-white/5">
+              <h3 className="text-green-500 font-black text-2xl md:text-2xl uppercase italic mb-8 flex items-center gap-3">
+                <CheckCircle2 size={26} /> O WORKSHOP É PARA VOCÊ:
               </h3>
-              <ul className="space-y-4 text-[0.8rem] md:text-base font-bold uppercase tracking-tight text-white/90">
-                <li className="flex gap-2"><span>✅</span> Médicos recém-formados em busca de escalas fixas</li>
-                <li className="flex gap-2"><span>✅</span> Quem cansou da humilhação dos grupos de WhatsApp</li>
-                <li className="flex gap-2"><span>✅</span> Médicos que precisam de previsibilidade financeira</li>
-                <li className="flex gap-2"><span>✅</span> Quem deseja ser a primeira opção das coordenações</li>
+              <ul className="space-y-5 text-[0.95rem] md:text-base font-bold uppercase tracking-tight text-white/90">
+                <li className="flex gap-3"><span>✅</span> Médicos recém-formados em busca de escalas fixas</li>
+                <li className="flex gap-3"><span>✅</span> Quem cansou da humilhação dos grupos de WhatsApp</li>
+                <li className="flex gap-3"><span>✅</span> Médicos que precisam de previsibilidade financeira</li>
+                <li className="flex gap-3"><span>✅</span> Quem deseja ser a primeira opção das coordenações</li>
               </ul>
             </div>
-            <div className="bg-white/5 p-8 rounded-3xl border border-white/5 opacity-80">
-              <h3 className="text-red-500 font-black text-xl md:text-2xl uppercase italic mb-6 flex items-center gap-2">
-                <XCircle /> NÃO É PARA VOCÊ:
+            <div className="bg-white/5 p-10 rounded-3xl border border-white/5 opacity-80">
+              <h3 className="text-red-500 font-black text-2xl md:text-2xl uppercase italic mb-8 flex items-center gap-3">
+                <XCircle size={26} /> NÃO É PARA VOCÊ:
               </h3>
-              <ul className="space-y-4 text-[0.8rem] md:text-base font-bold uppercase tracking-tight text-white/50">
-                <li className="flex gap-2"><span>❌</span> Quem acredita que CRM sozinho garante futuro</li>
-                <li className="flex gap-2"><span>❌</span> Quem aceita o amadorismo da gestão hospitalar</li>
-                <li className="flex gap-2"><span>❌</span> Quem busca fórmulas mágicas sem mudança de postura</li>
+              <ul className="space-y-5 text-[0.95rem] md:text-base font-bold uppercase tracking-tight text-white/50">
+                <li className="flex gap-3"><span>❌</span> Quem acredita que CRM sozinho garante futuro</li>
+                <li className="flex gap-3"><span>❌</span> Quem aceita o amadorismo da gestão hospitalar</li>
+                <li className="flex gap-3"><span>❌</span> Quem busca fórmulas mágicas sem mudança de postura</li>
               </ul>
             </div>
           </div>
@@ -460,7 +479,7 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
         <div className="max-w-md md:max-w-3xl mx-auto">
           <SectionTitle red="CLAREZA FINAL">PERGUNTAS FREQUENTES</SectionTitle>
-          <div className="mt-8 space-y-2">
+          <div className="mt-10 space-y-3">
             <FAQItem 
               question="Para quem é indicado este workshop?" 
               answer="Principalmente para médicos recém-formados e em transição de carreira que buscam estabilidade através de escalas fixas, abandonando a dependência de plantões avulsos." 
@@ -486,24 +505,24 @@ const App: React.FC = () => {
       </section>
 
       {/* --- SEÇÃO 9: OFERTA FINAL --- */}
-      <section className="pt-24 pb-48 px-6 bg-black relative overflow-hidden text-center reveal">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[400px] bg-red-600/5 blur-[100px] -z-10" />
+      <section className="pt-24 pb-56 px-6 bg-black relative overflow-hidden text-center reveal">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-600/5 blur-[120px] -z-10" />
         <div className="max-w-md md:max-w-4xl mx-auto">
-          <Award className="mx-auto text-red-600 mb-6" size={64} />
-          <p className="text-red-500 font-black uppercase text-[10px] md:text-sm tracking-[0.5em] mb-4 italic">O Mercado Não Espera. Sua Escala de Elite Começa Aqui.</p>
-          <div className="mb-10">
-            <span className="text-gray-500 line-through text-sm md:text-lg font-bold block">De R$ 997,00</span>
-            <h2 className="text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase italic leading-[0.8]">R$ 27,00</h2>
-            <p className="text-[12px] md:text-base text-gray-300 font-black mt-2 uppercase">Ingresso Workshop Maestria de Escala</p>
+          <Award className="mx-auto text-red-600 mb-8" size={72} />
+          <p className="text-red-500 font-black uppercase text-[12px] md:text-sm tracking-[0.6em] mb-6 italic">O Mercado Não Espera. Sua Escala de Elite Começa Aqui.</p>
+          <div className="mb-12">
+            <span className="text-gray-500 line-through text-base md:text-lg font-bold block mb-2">De R$ 997,00</span>
+            <h2 className="text-8xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase italic leading-[0.8]">R$ 27,00</h2>
+            <p className="text-[14px] md:text-base text-gray-200 font-black mt-4 uppercase tracking-widest">Ingresso Workshop Maestria de Escala</p>
           </div>
           
           <CTAButton hasLed={true} />
           
-          <div className="mt-12 flex flex-col items-center gap-4 opacity-50 grayscale">
-            <div className="flex gap-8">
-               <ShieldCheck size={28} /> <Lock size={28} /> <Users size={28} />
+          <div className="mt-16 flex flex-col items-center gap-6 opacity-60 grayscale">
+            <div className="flex gap-10">
+               <ShieldCheck size={32} /> <Lock size={32} /> <Users size={32} />
             </div>
-            <p className="text-[10px] md:text-xs font-black uppercase tracking-widest leading-relaxed text-gray-300">
+            <p className="text-[11px] md:text-xs font-black uppercase tracking-[0.3em] leading-loose text-gray-200">
               Ingressos do lote de abertura avançando <br/> 
               Ambiente 100% Seguro • Suporte Direto
             </p>
@@ -512,24 +531,24 @@ const App: React.FC = () => {
       </section>
 
       {/* --- STICKY FOOTER --- */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 bg-black/95 backdrop-blur-2xl border-t border-white/10 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-[100] p-5 bg-black/95 backdrop-blur-2xl border-t border-white/10 shadow-2xl">
          <div className="max-w-4xl mx-auto flex items-center justify-between">
            <div className="flex flex-col">
-              <span className="text-red-600 text-[8px] md:text-[10px] font-black uppercase tracking-tighter italic">Lote 01 Expira em Breve</span>
-              <span className="text-white text-xl md:text-3xl font-black italic tracking-tighter">R$ 27,00</span>
+              <span className="text-red-600 text-[10px] md:text-[10px] font-black uppercase tracking-tighter italic leading-none mb-1">Lote 01 Expira em Breve</span>
+              <span className="text-white text-2xl md:text-3xl font-black italic tracking-tighter leading-none">R$ 27,00</span>
            </div>
            <button 
              onClick={() => safeOpen(CHECKOUT_URL)}
-             className="px-6 md:px-10 py-3 md:py-4 bg-red-600 text-white font-black text-[10px] md:text-xs uppercase italic rounded-lg active:scale-95 transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)]"
+             className="px-8 md:px-12 py-4 md:py-4 bg-red-600 text-white font-black text-[11px] md:text-xs uppercase italic rounded-lg active:scale-95 transition-all shadow-[0_0_20px_rgba(220,38,38,0.4)]"
            >
-             QUERO MEU INGRESSO
+             GARANTIR INGRESSO
            </button>
          </div>
       </div>
 
-      <footer className="py-20 px-6 text-center bg-black opacity-30">
+      <footer className="py-24 px-6 text-center bg-black opacity-30">
         <div className="max-w-md md:max-w-4xl mx-auto">
-          <p className="text-[8px] md:text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] leading-loose">
+          <p className="text-[10px] md:text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] leading-loose">
             Workshop Maestria de Escala | Dr. Thiago Costa <br/>
             Sua estratégia garante sua liberdade. <br/>
             <a href={`https://${DOMAIN}`} target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors">
