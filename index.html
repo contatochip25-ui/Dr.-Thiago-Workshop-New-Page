@@ -21,7 +21,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1595336251600735');
-    fbq('track', 'PageView');
+    // PageView será disparado via React para garantir sincronia com a aplicação
     </script>
     <noscript>
     <img height="1" width="1" style="display:none"
@@ -91,7 +91,6 @@
             scrollbar-width: none;
         }
 
-        /* Reveal Animation Styles */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
