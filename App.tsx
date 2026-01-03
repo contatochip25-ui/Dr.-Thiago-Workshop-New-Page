@@ -168,20 +168,44 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#050505] selection:bg-red-600 selection:text-white pb-20 overflow-x-hidden">
       
       {/* --- SEÇÃO 1: HERO - O DESPERTAR DA ESTRATÉGIA --- */}
-      <section className="relative h-[100dvh] flex flex-col overflow-hidden">
+      <section className="relative h-[100dvh] flex flex-col md:justify-center overflow-hidden">
+        
+        {/* IMAGEM ESTRATÉGICA - AJUSTADA PARA FUSÃO NO DESKTOP */}
+        <div className="absolute inset-0 z-0 hidden md:block w-full h-full">
+          <div className="relative w-full h-full overflow-hidden">
+             <img 
+               src={IMAGES.mainAuthority} 
+               alt="Dr. Thiago Costa - Maestria de Escala" 
+               className="absolute right-[-10%] bottom-0 h-full w-auto object-contain filter brightness-[0.9] transition-all duration-1000"
+               style={{ 
+                 maskImage: 'linear-gradient(to left, black 60%, transparent 95%), linear-gradient(to top, black 80%, transparent 100%)',
+                 WebkitMaskImage: 'linear-gradient(to left, black 60%, transparent 95%), linear-gradient(to top, black 80%, transparent 100%)'
+               }}
+             />
+             {/* Gradientes extras para fusão perfeita nas laterais no desktop */}
+             <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent pointer-events-none" />
+             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none" />
+          </div>
+        </div>
+
+        {/* MANTENDO ESTRUTURA MOBILE IGUAL */}
         <div className="absolute top-0 left-0 right-0 z-30 pt-4 px-6 flex justify-center pointer-events-none">
            <span className="bg-red-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-white/10 shadow-[0_0_15px_rgba(220,38,38,0.3)]">
              🔴 EXCLUSIVO PARA MÉDICOS
            </span>
         </div>
 
-        {/* IMAGEM ESTRATÉGICA: DR THIAGO BRAÇO CRUZADO (AUTORIDADE) */}
-        <div className="relative w-full h-[45vh] md:h-[55vh] shrink-0 overflow-hidden">
-          <img src={IMAGES.mainAuthority} alt="Dr. Thiago Costa - Maestria de Escala" className="w-full h-full object-cover object-top filter brightness-[0.85]" />
+        {/* Imagem para Mobile (permanece como antes) */}
+        <div className="relative w-full h-[45vh] shrink-0 overflow-hidden md:hidden">
+          <img 
+            src={IMAGES.mainAuthority} 
+            alt="Dr. Thiago Costa - Maestria de Escala" 
+            className="w-full h-full object-cover object-top filter brightness-[0.85] transition-all duration-700" 
+          />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#050505] to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mb-2 shrink-0">
+        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mb-2 shrink-0 md:mt-12">
           <div className="flex items-center justify-center gap-4 md:gap-8">
             <div className="flex items-center gap-1.5">
               <Calendar className="text-[#d4a373]" size={14} strokeWidth={2.5} />
@@ -198,18 +222,18 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 px-6 flex flex-col flex-grow justify-between pb-8 max-w-md md:max-w-2xl lg:max-w-4xl mx-auto w-full">
-          <div className="text-center">
-            <h1 className="text-[1.65rem] md:text-4xl lg:text-5xl font-black text-white leading-[0.95] tracking-tighter uppercase italic mb-3">
+        <div className="relative z-10 px-6 flex flex-col flex-grow justify-between pb-8 max-w-md md:max-w-4xl lg:max-w-5xl md:mx-0 md:pl-16 lg:pl-32 w-full">
+          <div className="text-center md:text-left md:max-w-2xl">
+            <h1 className="text-[1.65rem] md:text-5xl lg:text-7xl font-black text-white leading-[0.95] tracking-tighter uppercase italic mb-3">
               SUA TÉCNICA SALVA VIDAS. <span className="text-red-600">SUA ESTRATÉGIA</span> GARANTE SUA LIBERDADE.
             </h1>
-            <p className="text-[1rem] md:text-xl text-gray-200 font-bold leading-tight px-2 max-w-2xl mx-auto">
+            <p className="text-[1rem] md:text-xl text-gray-200 font-bold leading-tight px-2 md:px-0 max-w-2xl">
               O CRM parou de ser um diferencial competitivo. Aprenda a decifrar os bastidores hospitalares e assuma o controle das escalas fixas de elite.
             </p>
           </div>
-          <div className="mt-auto w-full flex justify-center flex-col">
+          <div className="mt-auto md:mt-12 w-full flex justify-center md:justify-start flex-col">
             <CTAButton hasLed={true} />
-            <div className="flex justify-center gap-4 mt-5 opacity-30 grayscale scale-90 md:scale-100">
+            <div className="flex justify-center md:justify-start gap-4 mt-5 opacity-30 grayscale scale-90 md:scale-100">
                <div className="flex items-center gap-1"><ShieldCheck size={12} className="text-white" /><span className="text-[7px] md:text-[9px] font-black uppercase italic">Vagas Limitadas Lote 01</span></div>
                <div className="flex items-center gap-1"><Lock size={12} className="text-white" /><span className="text-[7px] md:text-[9px] font-black uppercase italic">Acesso Imediato</span></div>
             </div>
@@ -355,7 +379,7 @@ const App: React.FC = () => {
             <div className="relative p-1 bg-gradient-to-br from-red-600 to-transparent rounded-full shadow-[0_0_40px_rgba(220,38,38,0.4)]">
               <img src={IMAGES.trustPhoto} alt="Confiança e Sucesso" className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full border-2 border-black" />
               <div className="absolute bottom-0 right-0 bg-red-600 p-2 md:p-3 rounded-full text-white shadow-lg">
-                <CheckCircle2 size={24} />
+                CheckCircle2 size={24} />
               </div>
             </div>
           </div>
