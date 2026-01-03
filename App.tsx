@@ -41,7 +41,7 @@ const IMAGES = {
 };
 
 const DOMAIN = "workshop.medicothiagocosta.com.br";
-const CHECKOUT_URL = `https://${DOMAIN}/checkout`;
+const CHECKOUT_URL = "https://pay.kiwify.com.br/MzhAkbY";
 
 const safeOpen = (url: string): void => {
   if (typeof window !== 'undefined') {
@@ -171,7 +171,7 @@ const App: React.FC = () => {
       <section className="relative h-[100dvh] flex flex-col overflow-hidden">
         <div className="absolute top-0 left-0 right-0 z-30 pt-4 px-6 flex justify-center pointer-events-none">
            <span className="bg-red-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-white/10 shadow-[0_0_15px_rgba(220,38,38,0.3)]">
-             🔴 SESSÃO ESTRATÉGICA AO VIVO
+             🔴 EXCLUSIVO PARA MÉDICOS
            </span>
         </div>
 
@@ -220,7 +220,7 @@ const App: React.FC = () => {
       {/* --- SEÇÃO 2: DIAGNÓSTICO DO MERCADO MÉDICO --- */}
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
-          <SectionTitle red="DIAGNÓSTICO DO MERCADO">A ERA DO CRM COMMODITY CHEGOU AO FIM</SectionTitle>
+          <SectionTitle red="DIAGNÓSTICO DO MERCADO">Ser apenas mais um CRM não garante sua escala.</SectionTitle>
           <div className="space-y-6 text-gray-200 text-[1rem] md:text-lg leading-relaxed">
             <p className="md:text-center md:max-w-3xl md:mx-auto">
               Enquanto você foca no estetoscópio, o mercado está de olho na sua <strong>postura estratégica</strong>. O cenário mudou: com 38 mil novos médicos entrando no mercado anualmente, o CRM deixou de ser um passaporte para se tornar apenas o requisito mínimo.
@@ -447,7 +447,7 @@ const App: React.FC = () => {
             />
             <FAQItem 
               question="Por que o valor é de apenas R$ 27,00?" 
-              answer="O valor é simbólico para filtrar os médicos realmente comprometidos. Uma única escala fixa paga esse investimento por anos. O custo real é continuar dependendo da sorte." 
+              answer="O valor é simbólico para filtrar os médicos realmente comprometidos. Uma única escala fixa paga esse investimento por years. O custo real é continuar dependendo da sorte." 
             />
             <FAQItem 
               question="O evento ficará gravado?" 
