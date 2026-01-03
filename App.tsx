@@ -31,7 +31,10 @@ const IMAGES = {
   // Bio: Identidade profissional clara
   bioPhoto: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/fotoperfil.jpg",
   // Prova Social/Final: Proximidade, confiança e sucesso
-  trustPhoto: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/fotosorrindo.jpg"
+  trustPhoto: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/fotosorrindo.jpg",
+  // Depoimentos: Thumbnails específicos
+  testimonial1: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/depoimento1.png",
+  testimonial2: "https://raw.githubusercontent.com/contatochip25-ui/DR.THIAGO-COSTA/main/public/images/depoimento2.png"
 };
 
 const safeOpen = (url: string): void => {
@@ -73,10 +76,14 @@ const CTAButton: React.FC<{ hasLed?: boolean }> = ({ hasLed = false }) => (
   </div>
 );
 
-const VideoCard: React.FC<{ title: string; thumbnail: string }> = ({ title, thumbnail }) => (
+const VideoCard: React.FC<{ title: string; thumbnail: string; position?: string }> = ({ title, thumbnail, position = "object-center" }) => (
   <div className="w-full bg-[#111] rounded-2xl border border-white/10 overflow-hidden mb-8">
     <div className="relative aspect-video flex items-center justify-center bg-black group">
-      <img src={thumbnail} alt="Prova Social" className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500" />
+      <img 
+        src={thumbnail} 
+        alt="Prova Social" 
+        className={`absolute inset-0 w-full h-full object-cover ${position} opacity-50 grayscale group-hover:grayscale-0 transition-all duration-500`} 
+      />
       <div className="z-10 bg-red-600 p-5 rounded-full shadow-2xl group-hover:scale-110 transition-transform cursor-pointer">
         <Play className="fill-current text-white ml-1" size={28} />
       </div>
@@ -96,7 +103,7 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
         <span className="text-white font-bold text-xs uppercase tracking-tight pr-4">{question}</span>
         {isOpen ? <ChevronUp className="text-red-600 shrink-0" size={16} /> : <ChevronDown className="text-gray-600 shrink-0" size={16} />}
       </button>
-      {isOpen && <p className="mt-3 text-[11px] text-gray-500 leading-relaxed font-medium">{answer}</p>}
+      {isOpen && <p className="mt-3 text-[13px] text-gray-300 leading-relaxed font-medium">{answer}</p>}
     </div>
   );
 };
@@ -150,7 +157,7 @@ const App: React.FC = () => {
             <h1 className="text-[1.65rem] font-black text-white leading-[0.95] tracking-tighter uppercase italic mb-3">
               SUA TÉCNICA SALVA VIDAS. <span className="text-red-600">SUA ESTRATÉGIA</span> GARANTE SUA LIBERDADE.
             </h1>
-            <p className="text-[0.85rem] text-gray-300 font-bold leading-tight px-2">
+            <p className="text-[1rem] text-gray-200 font-bold leading-tight px-2">
               O CRM parou de ser um diferencial competitivo. Aprenda a decifrar os bastidores hospitalares e assuma o controle das escalas fixas de elite.
             </p>
           </div>
@@ -168,7 +175,7 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5">
         <div className="max-w-md mx-auto">
           <SectionTitle red="DIAGNÓSTICO DO MERCADO">A ERA DO CRM COMMODITY CHEGOU AO FIM</SectionTitle>
-          <div className="space-y-6 text-gray-400 text-sm leading-relaxed">
+          <div className="space-y-6 text-gray-200 text-[1rem] leading-relaxed">
             <p>
               Enquanto você foca no estetoscópio, o mercado está de olho na sua <strong>postura estratégica</strong>. O cenário mudou: com 38 mil novos médicos entrando no mercado anualmente, o CRM deixou de ser um passaporte para se tornar apenas o requisito mínimo.
             </p>
@@ -181,9 +188,9 @@ const App: React.FC = () => {
                 <div key={i} className="p-5 bg-white/5 border-l-2 border-red-600 rounded-r-xl">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="text-red-600">{item.icon}</div>
-                    <h4 className="text-white font-black uppercase text-[10px] italic">{item.title}</h4>
+                    <h4 className="text-white font-black uppercase text-[11px] italic">{item.title}</h4>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-medium leading-tight">{item.desc}</p>
+                  <p className="text-[13px] text-gray-300 font-medium leading-tight">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -195,20 +202,20 @@ const App: React.FC = () => {
       <section className="py-24 px-6 bg-black relative">
         <div className="max-w-md mx-auto">
           <SectionTitle red="O CÓDIGO INVISÍVEL">POR QUE ALGUNS TÊM AS MELHORES ESCALAS?</SectionTitle>
-          <div className="space-y-6 text-gray-400 text-sm leading-relaxed">
+          <div className="space-y-6 text-gray-200 text-[1rem] leading-relaxed">
             <p>
-              As escalas fixas e seguras operam sob um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
+              As escalas fixas e seguras operam under um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
                 <Target className="mx-auto text-red-600 mb-2" size={24} />
-                <h5 className="text-white font-black text-[9px] uppercase italic">Radar da Coordenação</h5>
-                <p className="text-[8px] text-gray-500 mt-1 uppercase">O que os tomadores de decisão realmente observam.</p>
+                <h5 className="text-white font-black text-[10px] uppercase italic">Radar da Coordenação</h5>
+                <p className="text-[11px] text-gray-300 mt-1 uppercase">O que os tomadores de decisão realmente observam.</p>
               </div>
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-center">
                 <Scale className="mx-auto text-red-600 mb-2" size={24} />
-                <h5 className="text-white font-black text-[9px] uppercase italic">Filtro de Postura</h5>
-                <p className="text-[8px] text-gray-500 mt-1 uppercase">Critérios silenciosos que nenhum livro ensina.</p>
+                <h5 className="text-white font-black text-[10px] uppercase italic">Filtro de Postura</h5>
+                <p className="text-[11px] text-gray-300 mt-1 uppercase">Critérios silenciosos que nenhum livro ensina.</p>
               </div>
             </div>
             <div className="bg-red-600/10 p-6 rounded-2xl border border-red-600/30 text-center italic font-bold text-white shadow-xl">
@@ -221,22 +228,47 @@ const App: React.FC = () => {
       {/* --- SEÇÃO 4: O TREINAMENTO INTENSIVO (ROADMAP) --- */}
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5">
         <div className="max-w-md mx-auto">
-          <SectionTitle red="PLANO DE AÇÃO">O QUE VOCÊ VAI DOMINAR NO WORKSHOP</SectionTitle>
-          <div className="space-y-4 mt-8">
+          <SectionTitle red="PLANO DE AÇÃO">O QUE VOCÊ VAI DOMINAR NO WORKSHOP AO VIVO</SectionTitle>
+          <div className="mb-8">
+            <p className="text-[1rem] text-gray-200 font-bold leading-relaxed mb-6">
+              3 a 4 horas de transformação na sua carreira médica, direto ao ponto. Você vai sair sabendo exatamente como ser o médico estratégico que manda na sua escala, sem depender de plantões caóticos.
+            </p>
+          </div>
+          <div className="space-y-4">
             {[
-              { icon: <Briefcase size={18} />, title: "Engenharia de Posicionamento", desc: "Como ser visto como autoridade desde os primeiros minutos na unidade." },
-              { icon: <Lock size={18} />, title: "Códigos de Confiança", desc: "A linguagem não-verbal que garante sua vaga na escala fixa de elite." },
-              { icon: <HeartPulse size={18} />, title: "Postura de Trincheira", desc: "Liderança de alto impacto com a equipe multidisciplinar." },
-              { icon: <Users size={18} />, title: "Networking Institucional", desc: "O jogo de bastidor que as UPAs e grandes centros escondem de você." },
-              { icon: <FileText size={18} />, title: "Blindagem de Escala", desc: "Como se tornar tecnicamente insubstituível para a coordenação médica." },
+              { 
+                icon: <Briefcase size={18} />, 
+                title: "1. Engenharia de Posicionamento na Unidade", 
+                desc: "Aprenda como ser visto como autoridade desde os primeiros minutos, conquistar respeito imediato da equipe e nunca mais ser tratado como “tapa-buraco”." 
+              },
+              { 
+                icon: <Lock size={18} />, 
+                title: "2. Códigos de Confiança da Coordenação", 
+                desc: "Descubra a linguagem silenciosa que garante sua vaga nas escalas fixas de elite, mesmo sem precisar implorar ou competir nos grupos de WhatsApp." 
+              },
+              { 
+                icon: <HeartPulse size={18} />, 
+                title: "3. Postura de Trincheira e Liderança de Alto Impacto", 
+                desc: "Construa uma presença que faz a equipe confiar em você, tomar decisões rápidas e assumir responsabilidades, sem precisar provar nada para ninguém." 
+              },
+              { 
+                icon: <Users size={18} />, 
+                title: "4. Networking Institucional: o Jogo dos Bastidores", 
+                desc: "Saiba como operar nos bastidores das UPAs e grandes centros, garantindo oportunidades que ninguém te conta e colocando você à frente da concorrência." 
+              },
+              { 
+                icon: <FileText size={18} />, 
+                title: "5. Blindagem de Escala: Tornando-se Insubstituível", 
+                desc: "Aprenda a se tornar o médico que a coordenação nunca quer perder, garantindo estabilidade, previsibilidade financeira e liberdade para planejar sua carreira." 
+              },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-5 rounded-2xl bg-black border border-white/5 group hover:border-red-600/50 transition-all">
                 <div className="shrink-0 w-10 h-10 bg-red-600/10 rounded-lg flex items-center justify-center text-red-600 group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-white font-black uppercase text-[11px] tracking-tight mb-1 italic">{item.title}</h4>
-                  <p className="text-[10px] text-gray-500 leading-tight uppercase font-medium">{item.desc}</p>
+                  <h4 className="text-white font-black uppercase text-[12px] tracking-tight mb-1 italic">{item.title}</h4>
+                  <p className="text-[11px] text-gray-300 leading-tight uppercase font-medium">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -252,12 +284,12 @@ const App: React.FC = () => {
             <img src={IMAGES.bioPhoto} alt="Dr. Thiago Costa - Perfil" className="w-full h-auto grayscale-[30%] contrast-[1.1]" />
           </div>
           <SectionTitle red="MÉDICO DE TRINCHEIRA">QUEM É O DR. THIAGO COSTA</SectionTitle>
-          <div className="space-y-6 text-gray-400 text-sm leading-relaxed">
+          <div className="space-y-6 text-gray-200 text-[1rem] leading-relaxed">
             <p>
               O Dr. Thiago Costa não é um influenciador. Ele é um médico que construiu sua carreira no caos das trincheiras, passando por UPAs, grandes centros e a gestão hospitalar real.
             </p>
             <p>
-              Respeitado por equipes de enfermagem e coordenações técnicas, ele decodificou os padrões que fazem um médico ser visto como uma autoridade imediata ou como apenas mais um nome em uma lista. Sua abordagem é pragmática: transformar a insegurança do recém-formado na clareza do médico estratégico que comanda sua própria agenda.
+              Respeitado por equipes de enfermagem e coordenações técnicas, ele decodificou os padrões que fazem um médico ser visto as uma autoridade imediata ou como apenas mais um nome em uma lista. Sua abordagem é pragmática: transformar a insegurança do recém-formado na clareza do médico estratégico que comanda sua própria agenda.
             </p>
           </div>
         </div>
@@ -277,8 +309,8 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-8">
-             <VideoCard title="RECOMENDAÇÃO INSTITUCIONAL: O impacto profissional nas trincheiras." thumbnail={IMAGES.bioPhoto} />
-             <VideoCard title="TESTEMUNHO DE POSTURA: O respeito conquistado nos bastidores hospitalares." thumbnail={IMAGES.mainAuthority} />
+             <VideoCard title="RECOMENDAÇÃO INSTITUCIONAL: O impacto profissional nas trincheiras." thumbnail={IMAGES.testimonial1} />
+             <VideoCard title="TESTEMUNHO DE POSTURA: O respeito conquistado nos bastidores hospitalares." thumbnail={IMAGES.testimonial2} position="object-top" />
           </div>
         </div>
       </section>
@@ -291,7 +323,7 @@ const App: React.FC = () => {
               <h3 className="text-green-500 font-black text-xl uppercase italic mb-6 flex items-center gap-2">
                 <CheckCircle2 /> O WORKSHOP É PARA VOCÊ:
               </h3>
-              <ul className="space-y-4 text-xs font-bold uppercase tracking-tight text-white/80">
+              <ul className="space-y-4 text-[0.8rem] font-bold uppercase tracking-tight text-white/90">
                 <li className="flex gap-2"><span>✅</span> Médicos recém-formados em busca de escalas fixas</li>
                 <li className="flex gap-2"><span>✅</span> Quem cansou da humilhação dos grupos de WhatsApp</li>
                 <li className="flex gap-2"><span>✅</span> Médicos que precisam de previsibilidade financeira</li>
@@ -302,7 +334,7 @@ const App: React.FC = () => {
               <h3 className="text-red-500 font-black text-xl uppercase italic mb-6 flex items-center gap-2">
                 <XCircle /> NÃO É PARA VOCÊ:
               </h3>
-              <ul className="space-y-4 text-xs font-bold uppercase tracking-tight text-white/50">
+              <ul className="space-y-4 text-[0.8rem] font-bold uppercase tracking-tight text-white/50">
                 <li className="flex gap-2"><span>❌</span> Quem acredita que CRM sozinho garante futuro</li>
                 <li className="flex gap-2"><span>❌</span> Quem aceita o amadorismo da gestão hospitalar</li>
                 <li className="flex gap-2"><span>❌</span> Quem busca fórmulas mágicas sem mudança de postura</li>
@@ -323,7 +355,7 @@ const App: React.FC = () => {
             />
             <FAQItem 
               question="O workshop ensina marketing médico ou redes sociais?" 
-              answer="Não. O foco é 100% no mercado offline, gestão de carreira hospitalar e posicionamento técnico nos bastidores onde as escalas são decididas." 
+              answer="Não. O foco é 100% no mercado offline, gestão de carreira hospitalar e posicionamento técnico nos bastidores onde as escalas foram decididas." 
             />
             <FAQItem 
               question="Por que o valor é de apenas R$ 27,00?" 
@@ -350,7 +382,7 @@ const App: React.FC = () => {
           <div className="mb-10">
             <span className="text-gray-500 line-through text-sm font-bold block">De R$ 997,00</span>
             <h2 className="text-7xl font-black text-white tracking-tighter uppercase italic leading-[0.8]">R$ 27,00</h2>
-            <p className="text-[10px] text-gray-400 font-black mt-2 uppercase">Ingresso Workshop Maestria de Escala</p>
+            <p className="text-[12px] text-gray-300 font-black mt-2 uppercase">Ingresso Workshop Maestria de Escala</p>
           </div>
           
           <CTAButton hasLed={true} />
@@ -359,7 +391,7 @@ const App: React.FC = () => {
             <div className="flex gap-8">
                <ShieldCheck size={20} /> <Lock size={20} /> <Users size={20} />
             </div>
-            <p className="text-[8px] font-black uppercase tracking-widest leading-relaxed">
+            <p className="text-[10px] font-black uppercase tracking-widest leading-relaxed text-gray-300">
               Ingressos do lote de abertura avançando <br/> 
               Ambiente 100% Seguro • Suporte Direto
             </p>
@@ -383,7 +415,7 @@ const App: React.FC = () => {
 
       <footer className="py-20 px-6 text-center bg-black opacity-30">
         <div className="max-w-md mx-auto">
-          <p className="text-[8px] text-gray-500 font-bold uppercase tracking-[0.2em] leading-loose">
+          <p className="text-[8px] text-gray-400 font-bold uppercase tracking-[0.2em] leading-loose">
             Workshop Maestria de Escala | Dr. Thiago Costa <br/>
             Sua estratégia garante sua liberdade. <br/>
             © 2024 - Todos os direitos reservados.
