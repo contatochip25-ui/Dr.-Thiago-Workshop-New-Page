@@ -143,6 +143,10 @@ const SectionTitle: React.FC<{ children: React.ReactNode; red?: string; center?:
 
 const App: React.FC = () => {
   const authPhotos = [IMAGES.authPhoto1, IMAGES.authPhoto2, IMAGES.authPhoto3];
+  const heroRef = useRef<HTMLElement>(null);
+  const offerRef = useRef<HTMLElement>(null);
+  const [isHeroInView, setIsHeroInView] = useState(true);
+  const [isOfferInView, setIsOfferInView] = useState(false);
 
   useEffect(() => {
     const observerOptions = {
@@ -152,14 +156,27 @@ const App: React.FC = () => {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+        if (entry.target.classList.contains('reveal')) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        }
+        
+        // Lógica de visibilidade para o Sticky CTA
+        if (entry.target === heroRef.current) {
+          setIsHeroInView(entry.isIntersecting);
+        }
+        if (entry.target === offerRef.current) {
+          setIsOfferInView(entry.isIntersecting);
         }
       });
     }, observerOptions);
 
     const elements = document.querySelectorAll('.reveal');
     elements.forEach(el => observer.observe(el));
+
+    if (heroRef.current) observer.observe(heroRef.current);
+    if (offerRef.current) observer.observe(offerRef.current);
 
     return () => observer.disconnect();
   }, []);
@@ -168,7 +185,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#050505] selection:bg-red-600 selection:text-white pb-20 overflow-x-hidden">
       
       {/* --- SEÇÃO 1: HERO - O DESPERTAR DA ESTRATÉGIA --- */}
-      <section className="relative h-[100dvh] flex flex-col md:justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-[100dvh] flex flex-col md:justify-center overflow-hidden">
         
         {/* IMAGEM ESTRATÉGICA - AJUSTADA PARA FUSÃO NO DESKTOP */}
         <div className="absolute inset-0 z-0 hidden md:block w-full h-full">
@@ -188,12 +205,12 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Imagem para Mobile - IMPACTO INICIAL NO TOPO */}
-        <div className="relative w-full h-[35vh] shrink-0 overflow-hidden md:hidden">
+        {/* Imagem para Mobile - IMPACTO INICIAL NO TOPO - AUMENTADA PARA 45VH */}
+        <div className="relative w-full h-[45vh] shrink-0 overflow-hidden md:hidden">
           <img 
             src={IMAGES.mainAuthority} 
             alt="Dr. Thiago Costa - Maestria de Escala" 
-            className="w-full h-full object-cover object-[center_12%] filter brightness-[0.85] transition-all duration-700" 
+            className="w-full h-full object-cover object-[center_10%] filter brightness-[0.85] transition-all duration-700" 
           />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050505] to-transparent" />
           
@@ -205,7 +222,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mt-4 mb-2 shrink-0 md:mt-12">
+        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1 mt-2 mb-1 shrink-0 md:mt-12">
           <div className="flex items-center justify-center gap-5 md:gap-8">
             <div className="flex items-center gap-2">
               <Calendar className="text-[#d4a373]" size={15} strokeWidth={2.5} />
@@ -222,18 +239,18 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 px-6 flex flex-col flex-grow justify-start md:justify-center pb-6 md:pb-10 max-w-md md:max-w-4xl lg:max-w-5xl md:mx-0 md:pl-16 lg:pl-32 w-full">
+        <div className="relative z-10 px-6 flex flex-col flex-grow justify-start md:justify-center pb-4 md:pb-10 max-w-md md:max-w-4xl lg:max-w-5xl md:mx-0 md:pl-16 lg:pl-32 w-full">
           <div className="text-center md:text-left md:max-w-2xl">
-            <h1 className="text-[1.8rem] md:text-5xl lg:text-7xl font-black text-white leading-[0.92] tracking-tighter uppercase italic mb-2 md:mb-4">
+            <h1 className="text-[1.8rem] md:text-5xl lg:text-7xl font-black text-white leading-[0.92] tracking-tighter uppercase italic mb-1 md:mb-4">
               SUA TÉCNICA SALVA VIDAS. <span className="text-red-600">SUA ESTRATÉGIA</span> GARANTE SUA LIBERDADE.
             </h1>
-            <p className="text-[0.825rem] md:text-xl text-gray-100 font-bold leading-[1.25] md:leading-relaxed px-2 md:px-0 max-w-2xl mb-4 md:mb-0">
+            <p className="text-[0.825rem] md:text-xl text-gray-100 font-bold leading-[1.25] md:leading-relaxed px-2 md:px-0 max-w-2xl mb-3 md:mb-0">
               O CRM parou de ser um diferencial competitivo. Aprenda a decifrar os bastidores hospitalares e assuma o controle das escalas fixas de elite.
             </p>
           </div>
           <div className="w-full flex justify-center md:justify-start flex-col">
             <CTAButton hasLed={true} />
-            <div className="flex justify-center md:justify-start gap-5 mt-4 md:mt-6 opacity-40 grayscale scale-90 md:scale-100">
+            <div className="flex justify-center md:justify-start gap-5 mt-3 md:mt-6 opacity-40 grayscale scale-90 md:scale-100">
                <div className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-white" /><span className="text-[9px] md:text-[9px] font-black uppercase italic">Vagas Limitadas Lote 01</span></div>
                <div className="flex items-center gap-1.5"><Lock size={14} className="text-white" /><span className="text-[9px] md:text-[9px] font-black uppercase italic">Acesso Imediato</span></div>
             </div>
@@ -289,7 +306,7 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="bg-red-600/10 p-8 md:p-12 rounded-2xl border border-red-600/30 text-center italic font-bold text-white shadow-xl text-[1.1rem] md:text-xl md:max-w-2xl md:mx-auto mt-12 leading-relaxed">
-              "Esforço sem estratégia na medicina moderna é o caminho mais rápido para a invisibilidade profissional e o burnout financeiro."
+              "Esforço sem estratégia na medicina moderna é o caminho mais rápido para the invisibilidade profissional e o burnout financeiro."
             </div>
           </div>
         </div>
@@ -505,7 +522,7 @@ const App: React.FC = () => {
       </section>
 
       {/* --- SEÇÃO 9: OFERTA FINAL --- */}
-      <section className="pt-24 pb-56 px-6 bg-black relative overflow-hidden text-center reveal">
+      <section ref={offerRef} className="pt-24 pb-56 px-6 bg-black relative overflow-hidden text-center reveal">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-600/5 blur-[120px] -z-10" />
         <div className="max-w-md md:max-w-4xl mx-auto">
           <Award className="mx-auto text-red-600 mb-8" size={72} />
@@ -531,7 +548,9 @@ const App: React.FC = () => {
       </section>
 
       {/* --- STICKY FOOTER --- */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] p-5 bg-black/95 backdrop-blur-2xl border-t border-white/10 shadow-2xl">
+      <div className={`fixed bottom-0 left-0 right-0 z-[100] p-5 bg-black/95 backdrop-blur-2xl border-t border-white/10 shadow-2xl transition-all duration-500 md:translate-y-0 md:opacity-100 ${
+        (!isHeroInView && !isOfferInView) ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
+      }`}>
          <div className="max-w-4xl mx-auto flex items-center justify-between">
            <div className="flex flex-col">
               <span className="text-red-600 text-[10px] md:text-[10px] font-black uppercase tracking-tighter italic leading-none mb-1">Lote 01 Expira em Breve</span>
