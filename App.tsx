@@ -222,7 +222,7 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1 mt-2 mb-1 shrink-0 md:mt-12">
+        <div className="relative z-10 w-full px-6 flex flex-col items-center gap-1.5 mt-2 mb-1 shrink-0 md:mt-12">
           <div className="flex items-center justify-center gap-5 md:gap-8">
             <div className="flex items-center gap-2">
               <Calendar className="text-[#d4a373]" size={15} strokeWidth={2.5} />
@@ -230,12 +230,12 @@ const App: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="text-[#d4a373]" size={15} strokeWidth={2.5} />
-              <span className="text-[14px] md:text-base text-white font-black tracking-tight">19:00h - Ao Vivo</span>
+              <span className="text-[14px] md:text-base text-white font-black tracking-tight">19:00h</span>
             </div>
           </div>
           <div className="flex items-center justify-center gap-2">
             <Video className="text-[#d4a373]" size={14} strokeWidth={2.5} />
-            <span className="text-[12px] md:text-sm text-[#d4a373] font-bold tracking-tight uppercase">Transmissão Exclusiva via <span className="font-black">ZOOM</span></span>
+            <span className="text-[12px] md:text-sm text-[#d4a373] font-bold tracking-tight uppercase">Ao vivo & Online via <span className="font-black">ZOOM</span></span>
           </div>
         </div>
 
@@ -257,6 +257,26 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* --- FAIXA ANIMADA DE ESCASSEZ --- */}
+      <div className="w-full bg-[#080808] border-y border-white/5 py-3 overflow-hidden relative z-20">
+        <div className="flex whitespace-nowrap animate-infinite-scroll">
+          <div className="flex items-center">
+            {[...Array(12)].map((_, i) => (
+              <span key={i} className="text-[10px] md:text-[11px] font-black text-red-600/80 uppercase tracking-[0.25em] italic px-6">
+                INSCRIÇÕES ABERTAS • VAGAS LIMITADAS •
+              </span>
+            ))}
+          </div>
+          <div className="flex items-center">
+            {[...Array(12)].map((_, i) => (
+              <span key={`dup-${i}`} className="text-[10px] md:text-[11px] font-black text-red-600/80 uppercase tracking-[0.25em] italic px-6">
+                INSCRIÇÕES ABERTAS • VAGAS LIMITADAS •
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* --- SEÇÃO 2: DIAGNÓSTICO DO MERCADO MÉDICO --- */}
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
