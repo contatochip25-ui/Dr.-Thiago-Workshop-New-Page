@@ -332,6 +332,44 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* --- SEÇÃO 5: APRESENTAÇÃO / BIO - DR. THIAGO COSTA --- */}
+      <section className="py-24 px-6 bg-black reveal">
+        <div className="max-w-md md:max-w-4xl mx-auto md:grid md:grid-cols-2 md:gap-14 md:items-center">
+          {/* IMAGEM ESTRATÉGICA: FOTO DE PERFIL (IDENTIDADE) */}
+          <div className="w-full mb-10 md:mb-0 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <img src={IMAGES.bioPhoto} alt="Dr. Thiago Costa - Perfil" className="w-full h-auto grayscale-[20%] contrast-[1.1] md:object-cover md:h-[600px]" />
+          </div>
+          <div>
+            <SectionTitle red="MÉDICO DE TRINCHEIRA">QUEM É O DR. THIAGO COSTA</SectionTitle>
+            <div className="space-y-6 text-gray-100 text-[1.1rem] md:text-lg leading-relaxed">
+              <p>
+                O Dr. Thiago Costa é o tipo de médico que o sistema chama quando precisa funcionar.
+              </p>
+              <p>
+                Ele construiu sua autoridade onde não existe palco, algoritmo ou margem de erro: plantões críticos, UPAs lotadas e gestão hospitalar real.
+              </p>
+              <p>
+                Nesse ambiente, he aprendeu o que a faculdade nunca ensinou:<br/>
+                na medicina, quem cresce não é o mais técnico — é o mais confiável.
+              </p>
+              <p>
+                Confiança não se declara. Se constrói.<br/>
+                E é ela que define quem entra nas boas escalas, quem é mantido e quem vira referência.
+              </p>
+              <p>
+                Por isso, o Dr. Thiago deixou de ser “mais um nome” e passou a ser o médico lembrado, indicado e protegido pelo sistema.
+              </p>
+              <p>
+                Hoje, he ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade, respeito e controle da própria agenda.
+              </p>
+              <p>
+                Sem promessas. Sem atalhos. Só o que funciona no mundo real da medicina.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- SEÇÃO 4: O TREINAMENTO INTENSIVO (ROADMAP) --- */}
       <section className="py-24 px-6 bg-[#0a0a0a] border-y border-white/5 reveal">
         <div className="max-w-md md:max-w-4xl mx-auto">
@@ -379,44 +417,6 @@ const App: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- SEÇÃO 5: APRESENTAÇÃO / BIO - DR. THIAGO COSTA --- */}
-      <section className="py-24 px-6 bg-black reveal">
-        <div className="max-w-md md:max-w-4xl mx-auto md:grid md:grid-cols-2 md:gap-14 md:items-center">
-          {/* IMAGEM ESTRATÉGICA: FOTO DE PERFIL (IDENTIDADE) */}
-          <div className="w-full mb-10 md:mb-0 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img src={IMAGES.bioPhoto} alt="Dr. Thiago Costa - Perfil" className="w-full h-auto grayscale-[20%] contrast-[1.1] md:object-cover md:h-[600px]" />
-          </div>
-          <div>
-            <SectionTitle red="MÉDICO DE TRINCHEIRA">QUEM É O DR. THIAGO COSTA</SectionTitle>
-            <div className="space-y-6 text-gray-100 text-[1.1rem] md:text-lg leading-relaxed">
-              <p>
-                O Dr. Thiago Costa é o tipo de médico que o sistema chama quando precisa funcionar.
-              </p>
-              <p>
-                Ele construiu sua autoridade onde não existe palco, algoritmo ou margem de erro: plantões críticos, UPAs lotadas e gestão hospitalar real.
-              </p>
-              <p>
-                Nesse ambiente, he aprendeu o que a faculdade nunca ensinou:<br/>
-                na medicina, quem cresce não é o mais técnico — é o mais confiável.
-              </p>
-              <p>
-                Confiança não se declara. Se constrói.<br/>
-                E é ela que define quem entra nas boas escalas, quem é mantido e quem vira referência.
-              </p>
-              <p>
-                Por isso, o Dr. Thiago deixou de ser “mais um nome” e passou a ser o médico lembrado, indicado e protegido pelo sistema.
-              </p>
-              <p>
-                Hoje, ele ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade, respeito e controle da própria agenda.
-              </p>
-              <p>
-                Sem promessas. Sem atalhos. Só o que funciona no mundo real da medicina.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -551,6 +551,20 @@ const App: React.FC = () => {
           
           <CTAButton hasLed={true} />
           
+          {/* SEÇÃO DE GARANTIA PREMIUM */}
+          <div className="mt-12 max-w-sm mx-auto p-6 rounded-2xl border border-white/5 bg-white/[0.02] text-left">
+            <div className="flex items-start gap-4">
+              <ShieldCheck className="text-red-600/80 shrink-0" size={24} strokeWidth={1.5} />
+              <div>
+                <h4 className="text-white font-black text-[11px] md:text-xs uppercase tracking-widest mb-2 italic">GARANTIA DE ACESSO E TRANSPARÊNCIA</h4>
+                <p className="text-gray-400 text-[13px] md:text-sm leading-relaxed font-medium">
+                  Ao adquirir o ingresso, o participante tem direito a reembolso integral em até 2 (dois) dias após a realização do workshop, caso entenda que o conteúdo não foi relevante para seu momento profissional.
+                </p>
+                <p className="text-gray-200 text-[11px] md:text-xs font-black uppercase tracking-tight mt-3 italic">Sem burocracia. Sem justificativas.</p>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-16 flex flex-col items-center gap-6 opacity-60 grayscale">
             <div className="flex gap-10">
                <ShieldCheck size={32} /> <Lock size={32} /> <Users size={32} />
