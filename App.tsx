@@ -20,10 +20,10 @@ import {
   Scale, 
   ChevronDown, 
   ChevronUp, 
-  Award,
-  Zap,
-  Flame,
-  X
+  Award, 
+  Zap, 
+  Flame, 
+  X 
 } from 'lucide-react';
 
 // --- CONFIGURAÇÕES E MOCKS ---
@@ -335,7 +335,6 @@ const App: React.FC = () => {
             ].map((item, i) => (
               <Reveal key={i}>
                 <div className="p-10 bg-gray-100 rounded-2xl border-l-8 border-blood-red h-full group hover:bg-white hover:shadow-2xl transition-all duration-500">
-                  {/* Fixed: Use React.ReactElement<any> to avoid unknown props error */}
                   <div className="text-blood-red mb-6">{React.cloneElement(item.icon as React.ReactElement<any>, { size: 40 })}</div>
                   <h3 className="text-2xl font-heading font-black mb-4 uppercase italic">{item.title}</h3>
                   <p className="text-slate-medium leading-relaxed font-medium">{item.text}</p>
@@ -446,8 +445,8 @@ const App: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { src: IMAGES.auth1, label: "Com lideranças do setor de saúde" },
-              { src: IMAGES.auth2, label: "Reconhecimento institucional" },
-              { src: IMAGES.auth3, label: "Network de alto nível no setor" }
+              { src: IMAGES.auth2, label: "Network de alto nível no setor" },
+              { src: IMAGES.auth3, label: "Reconhecimento institucional" }
             ].map((item, idx) => (
               <Reveal key={idx}>
                 <div className="group cursor-pointer">
@@ -486,7 +485,6 @@ const App: React.FC = () => {
                   <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Vereador • Autoridade Institucional</p>
                 </div>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-black">
-                  {/* Fixed: Removed non-standard fetchPriority attribute */}
                   <iframe 
                     id="panda-af65c3c8-f3bc-4b0d-8266-9e4f675eec9b" 
                     src={`https://player-vz-e907bd19-b8d.tv.pandavideo.com.br/embed/?v=af65c3c8-f3bc-4b0d-8266-9e4f675eec9b&iosFakeFullscreen=true&poster=${encodeURIComponent(IMAGES.thumb1)}`} 
@@ -513,7 +511,6 @@ const App: React.FC = () => {
                   <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Profissional de Saúde • Colega de Equipe</p>
                 </div>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-black">
-                  {/* Fixed: Removed non-standard fetchPriority attribute */}
                   <iframe 
                     id="panda-75e01b46-0d3d-409f-bb7f-2f8b12990d66" 
                     src={`https://player-vz-e907bd19-b8d.tv.pandavideo.com.br/embed/?v=75e01b46-0d3d-409f-bb7f-2f8b12990d66&iosFakeFullscreen=true&poster=${encodeURIComponent(IMAGES.thumb2)}`} 
