@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -270,18 +269,30 @@ const App: React.FC = () => {
             <span className="bg-blood-red text-white px-5 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-gold-accent shadow-lg mb-8 animate-float">
               🔴 EXCLUSIVO PARA MÉDICOS
             </span>
-            <div className="flex items-center gap-6 mb-6 text-white/70 text-sm font-bold uppercase tracking-widest italic">
-              <span className="flex items-center gap-2"><Calendar size={18} className="text-blood-red" /> 08 de FEV</span>
-              <span className="flex items-center gap-2"><Clock size={18} className="text-blood-red" /> 19:00h</span>
-              <span className="flex items-center gap-2"><Video size={18} className="text-blood-red" /> ZOOM</span>
-            </div>
             <h1 className="text-5xl md:text-8xl font-heading font-extrabold text-white leading-[0.9] tracking-tighter uppercase italic mb-6">
               O CRM TE DEU O DIREITO. <span className="text-blood-red underline decoration-gold-accent/50">NÃO A GARANTIA.</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 font-medium leading-relaxed max-w-xl mb-12">
-              Plantão fixo não vai para o mais técnico. Vai para quem domina o código invisível das coordenações de referência.
+              Plantão fixo não vai para o mais técnico. <br className="hidden md:block" />
+              Vai para quem entende o jogo, se posiciona certo e se torna indispensável.
             </p>
             <div className="w-full max-w-md">
+              <div className="flex flex-col items-center md:items-start mb-6 text-white/90">
+                <div className="flex items-center gap-4 text-base font-bold uppercase tracking-tight mb-2">
+                  <div className="flex items-center gap-2">
+                    <Calendar size={20} className="text-blood-red" />
+                    <span>08 de Fevereiro</span>
+                  </div>
+                  <div className="flex items-center gap-2 border-l border-white/20 pl-4">
+                    <Clock size={20} className="text-blood-red" />
+                    <span>19:00h</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 uppercase tracking-widest">
+                  <Video size={16} className="text-warning-orange" />
+                  <span>Ao vivo & Online via ZOOM</span>
+                </div>
+              </div>
               <button 
                 onClick={safeOpen}
                 className="w-full py-7 bg-blood-red hover:bg-warning-orange text-white hover:text-deep-black font-black text-2xl uppercase italic rounded-2xl shadow-[0_0_30px_rgba(185,28,28,0.5)] transition-all animate-heartbeat"
