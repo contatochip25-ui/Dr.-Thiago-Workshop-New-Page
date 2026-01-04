@@ -3,107 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#050505">
-    <title>Exclusivo para Médicos | Dr. Thiago</title>
+    <meta name="theme-color" content="#0A0A0A">
+    <title>Maestria de Escala | Dr. Thiago Costa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lexend:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
     
-    <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1595336251600735');
-    fbq('track', 'PageView');
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'blood-red': '#B91C1C',
+              'deep-black': '#0A0A0A',
+              'clinical-white': '#FFFFFF',
+              'slate-dark': '#1E293B',
+              'slate-medium': '#334155',
+              'warning-orange': '#F59E0B',
+              'success-green': '#10B981',
+              'gold-accent': '#FBBF24',
+              'red-dark': '#7F1D1D',
+              'red-light': '#FEE2E2',
+              'gray-100': '#F3F4F6',
+              'gray-800': '#1F2937'
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              heading: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            animation: {
+              'infinite-scroll': 'infinite-scroll 25s linear infinite',
+              'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+              'float': 'float 3s ease-in-out infinite',
+              'shake': 'shake 0.5s ease-in-out'
+            },
+            keyframes: {
+              'infinite-scroll': {
+                from: { transform: 'translateX(0)' },
+                to: { transform: 'translateX(-50%)' },
+              },
+              'heartbeat': {
+                '0%, 100%': { transform: 'scale(1)' },
+                '10%, 30%': { transform: 'scale(1.05)' },
+                '20%, 40%': { transform: 'scale(1)' },
+              },
+              'float': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              'shake': {
+                '0%, 100%': { transform: 'translateX(0)' },
+                '25%': { transform: 'translateX(-5px)' },
+                '75%': { transform: 'translateX(5px)' },
+              }
+            }
+          }
+        }
+      }
     </script>
-    <!-- End Meta Pixel Code -->
 
     <style>
-        :root {
-            --bg-color: #050505;
-            --accent-red: #dc2626;
-        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #ffffff;
-            overflow-x: hidden;
+            background-color: #FFFFFF;
+            color: #0A0A0A;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            line-height: 1.6; /* Melhoria de legibilidade base */
-        }
-        h1, h2, h3, h4, .font-heading {
-            font-family: 'Lexend', sans-serif;
-            line-height: 1.1;
-        }
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        @keyframes led-pulse {
-            0%, 100% { 
-                box-shadow: 0 0 12px rgba(220, 38, 38, 0.4), 0 0 0 1px rgba(220, 38, 38, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 25px rgba(220, 38, 38, 0.7), 0 0 0 2px rgba(255, 50, 50, 0.6);
-            }
-        }
-        .led-active {
-            animation: led-pulse 3s infinite ease-in-out !important;
-            border-color: rgba(220, 38, 38, 0.5) !important;
-        }
-
-        @keyframes infinite-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        .animate-infinite-scroll {
-            animation: infinite-scroll 20s linear infinite;
-        }
-        .animate-infinite-scroll:hover {
-            animation-play-state: paused;
+            overflow-x: hidden;
         }
         
-        #root {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+        /* Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: #B91C1C;
+            z-index: 99999;
+            transition: width 0.1s ease;
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Reveal Animation Styles */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform, opacity;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
+        
         .revealed {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Exit Modal Animation */
+        .modal-active {
+            animation: modalIn 0.3s ease-out forwards;
+        }
+        
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F3F4F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B91C1C;
+            border-radius: 4px;
+        }
+        
+        .glow-red {
+            box-shadow: 0 0 20px rgba(185, 28, 28, 0.4);
+        }
+
+        /* Ensure texts on dark backgrounds are always legible */
+        .bg-dark-section {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+        }
+        
+        .bg-dark-section p, .bg-dark-section span {
+            color: #CBD5E1;
+        }
+
+        .bg-dark-section h1, .bg-dark-section h2, .bg-dark-section h3 {
+            color: #FFFFFF;
+        }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
@@ -115,13 +146,10 @@
   }
 }
 </script>
-<script type="module" src="./index.tsx"></script>
+    <script type="module" src="./index.tsx"></script>
 </head>
 <body>
-    <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1595336251600735&ev=PageView&noscript=1"/>
-    </noscript>
+    <div id="scroll-progress"></div>
     <div id="root"></div>
 </body>
 </html>
