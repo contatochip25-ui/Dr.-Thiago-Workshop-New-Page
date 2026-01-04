@@ -311,7 +311,7 @@ const App: React.FC = () => {
           <SectionTitle red="O CÓDIGO INVISÍVEL">POR QUE ALGUNS TÊM AS MELHORES ESCALAS?</SectionTitle>
           <div className="space-y-8 text-gray-200 text-[1.1rem] md:text-lg leading-relaxed">
             <p className="md:text-center md:max-w-3xl md:mx-auto">
-              As escalas fixas e seguras operam under um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
+              As escalas fixas e seguras operam dentro de um critério de seleção invisível: a <strong>Confiança Operacional</strong>. Quem não domina a engenharia de carreira está condenado a viver das sobras de quem já entendeu o novo jogo.
             </p>
             <div className="grid grid-cols-2 gap-5 md:max-w-2xl md:mx-auto mt-12">
               <div className="p-6 bg-white/5 rounded-2xl border border-white/10 text-center flex flex-col items-center justify-center h-full">
@@ -394,31 +394,27 @@ const App: React.FC = () => {
             <SectionTitle red="MÉDICO DE TRINCHEIRA">QUEM É O DR. THIAGO COSTA</SectionTitle>
             <div className="space-y-6 text-gray-100 text-[1.1rem] md:text-lg leading-relaxed">
               <p>
-                O Dr. Thiago Costa não construiu sua carreira em palco, nem em rede social.
-                Ele construiu na prática — onde a medicina é testada de verdade.
+                O Dr. Thiago Costa é o tipo de médico que o sistema chama quando precisa funcionar.
               </p>
               <p>
-                Enquanto muitos saem da faculdade cheios de teoria e pouca direção, ele enfrentou o que quase todo médico recém-formado conhece bem: plantões exaustivos, ambientes caóticos, pressão constante e decisões que não admitem erro.
+                Ele construiu sua autoridade onde não existe palco, algoritmo ou margem de erro: plantões críticos, UPAs lotadas e gestão hospitalar real.
               </p>
               <p>
-                UPAs lotadas. Grandes centros. Gestão hospitalar real.
-                Foi ali, no dia a dia duro da profissão, que ele aprendeu algo que a faculdade nunca ensinou.
+                Nesse ambiente, he aprendeu o que a faculdade nunca ensinou:<br/>
+                na medicina, quem cresce não é o mais técnico — é o mais confiável.
               </p>
               <p>
-                Ele percebeu que não é só competência técnica que define quem cresce na medicina.
-                Existem padrões claros que fazem um médico ser respeitado, valorizado e chamado — enquanto outros, igualmente formados, ficam presos a plantões mal pagos e sem previsibilidade.
+                Confiança não se declara. Se constrói.<br/>
+                E é ela que define quem entra nas boas escalas, quem é mantido e quem vira referência.
               </p>
               <p>
-                Respeitado por equipes de enfermagem, coordenações técnicas e gestores, o Dr. Thiago passou a ser visto não como “mais um nome na escala”, mas como referência.
+                Por isso, o Dr. Thiago deixou de ser “mais um nome” e passou a ser o médico lembrado, indicado e protegido pelo sistema.
               </p>
               <p>
-                Hoje, sua missão é clara:
-                encurtar o caminho de quem está começando, transformando a insegurança do recém-formado na clareza de um médico estratégico — que entende o jogo, conquista espaço e passa a comandar a própria agenda.
+                Hoje, ele ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade, respeito e controle da própria agenda.
               </p>
               <p>
-                Sem promessas irreais.
-                Sem atalhos.
-                Só o que funciona no mundo real da medicina.
+                Sem promessas. Sem atalhos. Só o que funciona no mundo real da medicina.
               </p>
             </div>
           </div>
