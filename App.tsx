@@ -349,7 +349,7 @@ const App: React.FC = () => {
                 Ele construiu sua autoridade onde não existe palco, algoritmo ou margem de erro: plantões críticos, UPAs lotadas e gestão hospitalar real.
               </p>
               <p>
-                Nesse ambiente, he aprendeu o que a faculdade nunca ensinou:<br/>
+                Nesse ambiente, ele aprendeu o que a faculdade nunca ensinou:<br/>
                 na medicina, quem cresce não é o mais técnico — é o mais confiável.
               </p>
               <p>
@@ -360,7 +360,7 @@ const App: React.FC = () => {
                 Por isso, o Dr. Thiago deixou de ser “mais um nome” e passou a ser o médico lembrado, indicado e protegido pelo sistema.
               </p>
               <p>
-                Hoje, he ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade, respeito e controle da própria agenda.
+                Hoje, ele ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade, respeito e controle da própria agenda.
               </p>
               <p>
                 Sem promessas. Sem atalhos. Só o que funciona no mundo real da medicina.
