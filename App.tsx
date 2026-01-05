@@ -66,7 +66,7 @@ const Reveal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <div ref={ref} className="reveal">{children}</div>;
 };
 
-/* COMPONENTE DE BARRA DE PROGRESSO PADRONIZADO - CORREÇÃO DE VISIBILIDADE */
+/* COMPONENTE DE BARRA DE PROGRESSO PADRONIZADO */
 const ProgressBar: React.FC<{ progress: number; variant?: 'red' | 'green' }> = ({ progress, variant = 'red' }) => (
   <div className="w-full mt-6 mb-4 relative z-50">
     <div className="relative h-6 bg-white/20 rounded-full overflow-hidden border border-white/10 shadow-lg min-h-[24px]">
@@ -206,10 +206,10 @@ const ExitModal = () => {
         </button>
         <h2 className="text-5xl md:text-6xl font-black text-white italic tracking-tighter mb-6 uppercase">ESPERA.</h2>
         <p className="text-slate-200 text-lg leading-relaxed mb-8">
-          Você está prestes a fechar esta página e continuar na MESMA situação.<br/><br/>
-          Refém do WhatsApp. Invisível para coordenações. Sem plantão fixo.<br/><br/>
-          Por R$ 27,00 você pode aprender o código que muda tudo.<br/>
-          <strong>Lote 01 expira em breve.</strong>
+          Você vai fechar esta página e continuar na MESMA situação.<br/><br/>
+          Refém do WhatsApp. Invisível para as coordenações. Sem plantão fixo.<br/><br/>
+          Por R$ 27,00 você tem acesso ao código que muda o jogo.<br/>
+          <strong>O Lote 01 está expirando agora.</strong>
         </p>
         <div className="bg-red-dark/50 p-4 rounded-xl mb-8 flex items-center justify-center gap-3 text-white font-bold animate-pulse">
           <Flame className="text-warning-orange" />
@@ -219,10 +219,10 @@ const ExitModal = () => {
           onClick={safeOpen}
           className="w-full py-6 bg-warning-orange hover:bg-gold-accent text-deep-black font-black text-xl uppercase tracking-tighter rounded-xl shadow-2xl transition-all animate-heartbeat"
         >
-          SIM, EU QUERO O CÓDIGO
+          SIM, QUERO APRENDER O JOGO
         </button>
         <button onClick={() => setIsOpen(false)} className="mt-6 text-slate-400 text-sm hover:text-blood-red transition-colors underline decoration-dotted">
-          Prefiro continuar invisível
+          Prefiro continuar disputando o que sobra
         </button>
       </div>
     </div>
@@ -232,7 +232,7 @@ const ExitModal = () => {
 // --- APP PRINCIPAL ---
 
 const App: React.FC = () => {
-  /* Lógica de progressão: Inicia em 67%, para em 79%, suave a cada 5s */
+  /* Lógica de progressão preservada */
   const [salesProgress, setSalesProgress] = useState(67);
 
   useEffect(() => {
@@ -254,7 +254,6 @@ const App: React.FC = () => {
           clearInterval(timer);
           return 79;
         }
-        // Incremento pequeno e suave a cada 5 segundos
         const increment = 0.4 + Math.random() * 0.6;
         const nextValue = prev + increment;
         return nextValue > 79 ? 79 : nextValue;
@@ -263,7 +262,6 @@ const App: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Injetar script do PandaVideo
   useEffect(() => {
     if (!document.querySelector('script[src="https://player.pandavideo.com.br/api.v2.js"]')) {
       const script = document.createElement('script');
@@ -280,23 +278,22 @@ const App: React.FC = () => {
       <ConversionToast />
       <ExitModal />
 
-      {/* 1. HERO (DARK) - Adicionado pb-32 para evitar sobreposição do marquee */}
+      {/* 1. HERO (DARK) */}
       <section className="relative min-h-[100dvh] flex flex-col justify-center items-center bg-deep-black overflow-hidden pt-20 pb-32">
         <div className="absolute inset-0 opacity-40">
            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-dark/30 to-deep-black z-10" />
            <img src={IMAGES.mainAuthority} className="w-full h-full object-cover object-top md:object-right-top" alt="Dr. Thiago" />
         </div>
-        {/* Container principal com z-40 para ficar acima do marquee z-30 */}
         <div className="relative z-40 max-w-6xl mx-auto px-6 text-center md:text-left grid md:grid-cols-2">
           <div className="flex flex-col items-center md:items-start">
             <span className="bg-blood-red text-white px-5 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-gold-accent shadow-lg mb-8 animate-float">
               🔴 EXCLUSIVO PARA MÉDICOS
             </span>
             <h1 className="text-5xl md:text-8xl font-heading font-extrabold text-white leading-[0.9] tracking-tighter uppercase italic mb-6">
-              O CRM TE DEU O DIREITO. <span className="text-blood-red underline decoration-gold-accent/50">NÃO A GARANTIA.</span>
+              PARE DE DISPUTAR PLANTÃO. <span className="text-blood-red underline decoration-gold-accent/50">OU CONTINUE ACEITANDO O QUE SOBRAR.</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 font-medium leading-relaxed max-w-xl mb-12">
-              O método completo para virar o plantonista mais procurado. Enquanto outros esperam o WhatsApp tocar, você escolhe qual aceitar e qual recusar.
+              O método que faz médicos serem chamados, mantidos e priorizados — mesmo com o mercado saturado e mais de 38 mil novos médicos por ano.
             </p>
             <div className="w-full max-w-md">
               <div className="flex flex-col items-center md:items-start mb-6 text-white/90">
@@ -322,12 +319,10 @@ const App: React.FC = () => {
                 GARANTIR MEU INGRESSO
               </button>
 
-              {/* BARRA DE PROGRESSO HERO - CORREÇÃO DE VISIBILIDADE E TEXTO PADRONIZADO */}
               <ProgressBar progress={salesProgress} variant="red" />
             </div>
           </div>
         </div>
-        {/* Marquee - Z-INDEX 30 */}
         <div className="absolute bottom-0 left-0 w-full bg-warning-orange py-4 overflow-hidden border-t-2 border-deep-black z-30">
           <div className="flex whitespace-nowrap animate-infinite-scroll">
             {[...Array(20)].map((_, i) => (
@@ -346,16 +341,19 @@ const App: React.FC = () => {
             <div className="text-center mb-16">
               <span className="text-blood-red font-black uppercase tracking-widest text-xs mb-4 block">DIAGNÓSTICO DO MERCADO</span>
               <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic">
-                Ser apenas mais um CRM não garante seu plantão fixo.
+                O CRM parou de ser garantia de renda. O sistema está quebrando.
               </h2>
               <div className="w-24 h-2 bg-blood-red mx-auto mt-8" />
+              <p className="mt-8 text-xl text-slate-medium max-w-3xl mx-auto leading-relaxed">
+                Hoje, 38 mil novos médicos entram no sistema anualmente. A maioria vai passar a carreira inteira brigando por migalhas em grupos de WhatsApp, sendo tratada como número descartável.
+              </p>
             </div>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: <Smartphone />, title: "O REFÉM DO WHATSAPP", text: "Viver em alerta 24h para não perder a vaga em grupos caóticos de plantões." },
-              { icon: <BadgeAlert />, title: "O MÉDICO 'TAPA-BURACO'", text: "A sensação humilhante de ser tratado como descartável por coordenações amadoras." },
-              { icon: <TrendingUp />, title: "INSEGURANÇA FINANCEIRA", text: "A angústia de não ter um plantão fixo para planejar o futuro da sua carreira." }
+              { icon: <Smartphone />, title: "O ESCRAVO DO ALERTA", text: "Você vive em função de um celular. Se não responder em 30 segundos, perde a vaga. Isso não é carreira, é submissão." },
+              { icon: <BadgeAlert />, title: "O MÉDICO INVISÍVEL", text: "Para o hospital, você é apenas um nome em uma planilha. Substituível a qualquer momento por alguém mais barato." },
+              { icon: <TrendingUp />, title: "O CUSTO DA INCERTEZA", text: "Sem plantão fixo, não há futuro. Apenas uma sequência de 'tapa-buracos' que drena sua energia e liquida sua autoridade." }
             ].map((item, i) => (
               <Reveal key={i}>
                 <div className="p-10 bg-gray-100 rounded-2xl border-l-8 border-blood-red h-full group hover:bg-white hover:shadow-2xl transition-all duration-500">
@@ -374,25 +372,25 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto text-center">
           <Reveal>
             <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic mb-8">
-              POR QUE ALGUNS TÊM OS <span className="text-gold-accent">MELHORES PLANTÕES FIXOS?</span>
+              POR QUE ALGUNS ESTÃO NO <span className="text-gold-accent">TOPO DA LISTA DA COORDENAÇÃO?</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-medium mb-16">
-              O segredo está no <span className="text-blood-red font-bold">CÓDIGO INVISÍVEL</span>. Um conjunto de comportamentos e posicionamentos que filtram quem entra nos plantões de primeira linha.
+              Não é sorte. Não é currículo. É o <span className="text-blood-red font-bold">CÓDIGO INVISÍVEL</span>. Um conjunto de sinais que a faculdade ignorou, mas que define quem fica com os melhores plantões fixos.
             </p>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Reveal>
               <div className="bg-deep-black/60 p-12 rounded-3xl border border-blood-red flex flex-col items-center group hover:bg-red-dark transition-all duration-500">
                 <div className="text-blood-red group-hover:text-white transition-colors mb-8"><Eye size={64} strokeWidth={1.5} /></div>
-                <h4 className="text-2xl font-heading font-bold mb-4 uppercase italic">Radar da Coordenação</h4>
-                <p className="text-slate-400 group-hover:text-white/80 transition-colors">O que os decisores observam silenciosamente antes de te chamar para um plantão fixo.</p>
+                <h4 className="text-2xl font-heading font-bold mb-4 uppercase italic">Radar Real da Coordenação</h4>
+                <p className="text-slate-400 group-hover:text-white/80 transition-colors">Aprenda o que os decisores observam em silêncio antes de te dar a chave de um plantão fixo de elite.</p>
               </div>
             </Reveal>
             <Reveal>
               <div className="bg-deep-black/60 p-12 rounded-3xl border border-blood-red flex flex-col items-center group hover:bg-red-dark transition-all duration-500">
                 <div className="text-blood-red group-hover:text-white transition-colors mb-8"><Scale size={64} strokeWidth={1.5} /></div>
-                <h4 className="text-2xl font-heading font-bold mb-4 uppercase italic">Filtro de Postura</h4>
-                <p className="text-slate-400 group-hover:text-white/80 transition-colors">Os critérios silenciosos que separam os médicos "substituíveis" dos médicos "indispensáveis".</p>
+                <h4 className="text-2xl font-heading font-bold mb-4 uppercase italic">Filtro de Confiabilidade</h4>
+                <p className="text-slate-400 group-hover:text-white/80 transition-colors">O critério brutal que separa os médicos 'substituíveis' dos 'indispensáveis' no sistema hospitalar.</p>
               </div>
             </Reveal>
           </div>
@@ -411,15 +409,15 @@ const App: React.FC = () => {
           <div>
             <Reveal>
               <span className="bg-blood-red text-white px-4 py-1 rounded text-xs font-black uppercase tracking-widest mb-6 inline-block">MÉDICO DE TRINCHEIRA</span>
-              <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic mb-8">QUEM É O DR. THIAGO COSTA</h2>
+              <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic mb-8">DR. THIAGO COSTA</h2>
               <div className="space-y-6 text-gray-800 text-lg leading-[1.8] font-medium">
-                <p>O Dr. Thiago Costa é o tipo de médico que o sistema chama quando precisa funcionar.</p>
-                <p>Ele aprendeu o que a faculdade nunca ensinou: na medicina, quem cresce não é o mais técnico — é o mais confiável.</p>
-                <p>Confiança não se declara. Se constrói. E é ela que define quem entra nos bons plantões fixos, quem é mantido e quem vira referência.</p>
-                <p>Hoje, he ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade estratégica.</p>
+                <p>O Dr. Thiago Costa atua onde o sistema não pode falhar. Ele opera nos bastidores da medicina real.</p>
+                <p>Ele aprendeu o que os livros ocultam: no hospital, quem cresce não é o detentor de títulos — é o detentor de confiança operacional.</p>
+                <p>A faculdade ensina a tratar doenças. O mercado exige que você saiba tratar o sistema para garantir sua liberdade e seu respeito.</p>
+                <p>Hoje, ele ensina médicos a saírem da lógica do esforço braçal infinito para entrarem no jogo da previsibilidade estratégica.</p>
               </div>
               <div className="mt-12 p-8 bg-gray-100 border-l-8 border-blood-red italic text-xl font-bold leading-relaxed">
-                "Esforço sem estratégia na medicina moderna é o caminho mais rápido para the invisibilidade profissional."
+                "Na medicina moderna, quem cresce não é o mais técnico. É o mais confiável."
                 <footer className="mt-4 text-blood-red not-italic font-black uppercase text-sm">— Dr. Thiago Costa</footer>
               </div>
             </Reveal>
@@ -433,16 +431,16 @@ const App: React.FC = () => {
           <Reveal>
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic mb-6">PLANO DE AÇÃO AO VIVO</h2>
-              <p className="text-xl text-blood-red font-black uppercase tracking-widest">O que você vai dominar</p>
+              <p className="text-xl text-blood-red font-black uppercase tracking-widest">Domine as regras que o sistema não te contou</p>
             </div>
           </Reveal>
           <div className="grid md:grid-cols-5 gap-6">
             {[
-              { id: "01", title: "Engenharia de Posicionamento", desc: "Aprenda como ser visto como autoridade desde os primeiros minutos." },
-              { id: "02", title: "Códigos de Confiança", desc: "A linguagem silenciosa que garante sua vaga nos plantões fixos de elite." },
-              { id: "03", title: "Postura de Trincheira", desc: "Construa uma presença que faz a coordenação confiar em você." },
-              { id: "04", title: "Networking Bastidor", desc: "Saiba operar nos bastidores para garantir oportunidades ocultas." },
-              { id: "05", title: "Blindagem de Plantão", desc: "Torne-se o médico que a coordenação nunca quer perder dos plantões fixos." }
+              { id: "01", title: "Clareza Operacional", desc: "Aprenda a ler o ambiente e ser visto como autoridade nos primeiros minutos." },
+              { id: "02", title: "Controle de Escala", desc: "A lógica para garantir sua vaga nos plantões fixos que ninguém quer largar." },
+              { id: "03", title: "Diferenciação Real", desc: "Construa uma presença que faz a coordenação ter medo de te perder." },
+              { id: "04", title: "Networking Prático", desc: "Como operar nos bastidores para que os melhores plantões cheguem até você." },
+              { id: "05", title: "Blindagem de Carreira", desc: "Torne-se o médico que o sistema prioriza, independente da saturação do mercado." }
             ].map((mod, i) => (
               <Reveal key={i}>
                 <div className="bg-white p-10 rounded-3xl border border-slate-200 h-full group hover:border-blood-red hover:shadow-2xl transition-all duration-300">
@@ -461,16 +459,16 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading font-black text-deep-black uppercase tracking-tight mb-3">RECONHECIMENTO E AUTORIDADE PROFISSIONAL</h2>
-              <p className="text-lg text-blood-red font-semibold">Validação Real de Quem Está no Sistema</p>
+              <h2 className="text-4xl font-heading font-black text-deep-black uppercase tracking-tight mb-3">AUTORIDADE E RECONHECIMENTO</h2>
+              <p className="text-lg text-blood-red font-semibold">Validação Real dentro do Sistema de Saúde</p>
             </div>
           </Reveal>
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { src: IMAGES.auth1, label: "Com lideranças do setor de saúde" },
-              { src: IMAGES.auth2, label: "Network de alto nível no setor" },
-              { src: IMAGES.auth3, label: "Reconhecimento institucional" }
+              { src: IMAGES.auth1, label: "Liderança e Gestão Operacional" },
+              { src: IMAGES.auth2, label: "Network Estratégico no Setor" },
+              { src: IMAGES.auth3, label: "Reconhecimento de Resultados" }
             ].map((item, idx) => (
               <Reveal key={idx}>
                 <div className="group cursor-pointer">
@@ -495,18 +493,17 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-heading font-black text-deep-black uppercase tracking-tight mb-3">O QUE DIZEM SOBRE O DR. THIAGO COSTA</h2>
-              <p className="text-lg text-blood-red font-semibold">Depoimentos de Quem Conhece o Trabalho de Perto</p>
+              <h2 className="text-4xl font-heading font-black text-deep-black uppercase tracking-tight mb-3">CONFIANÇA E RESULTADO</h2>
+              <p className="text-lg text-blood-red font-semibold">O que o sistema diz sobre o trabalho do Dr. Thiago</p>
             </div>
           </Reveal>
           
           <div className="grid md:grid-cols-2 gap-10 mb-16">
-            {/* VÍDEO 1 */}
             <Reveal>
               <div className="bg-white border-2 border-blood-red rounded-xl p-6 shadow-lg transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_8px_24px_rgba(185,28,28,0.2)] hover:border-gold-accent">
                 <div className="text-center mb-5">
-                  <h3 className="text-xl font-bold text-deep-black mb-1">Técnicas Diferenciadas</h3>
-                  <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Vereador • Autoridade Institucional</p>
+                  <h3 className="text-xl font-bold text-deep-black mb-1">Eficiência Comprovada</h3>
+                  <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Autoridade Institucional</p>
                 </div>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-black">
                   <iframe 
@@ -520,19 +517,18 @@ const App: React.FC = () => {
                 <div className="mt-5 pt-5 border-t border-slate-200">
                   <p className="text-base italic text-slate-800 text-center leading-relaxed">
                     <span className="text-blood-red font-bold text-2xl mr-1">"</span>
-                    As técnicas dele são diferentes de qualquer médico que já vi.
+                    Ele opera em um nível de confiança que o mercado não está acostumado.
                     <span className="text-blood-red font-bold text-2xl ml-1">"</span>
                   </p>
                 </div>
               </div>
             </Reveal>
 
-            {/* VÍDEO 2 */}
             <Reveal>
               <div className="bg-white border-2 border-blood-red rounded-xl p-6 shadow-lg transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_8px_24px_rgba(185,28,28,0.2)] hover:border-gold-accent">
                 <div className="text-center mb-5">
-                  <h3 className="text-xl font-bold text-deep-black mb-1">Admiração e Eficiência</h3>
-                  <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Profissional de Saúde • Colega de Equipe</p>
+                  <h3 className="text-xl font-bold text-deep-black mb-1">Respeito e Diferenciação</h3>
+                  <p className="text-sm font-semibold text-blood-red uppercase tracking-wider">Profissional de Trincheira</p>
                 </div>
                 <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-black">
                   <iframe 
@@ -546,7 +542,7 @@ const App: React.FC = () => {
                 <div className="mt-5 pt-5 border-t border-slate-200">
                   <p className="text-base italic text-slate-800 text-center leading-relaxed">
                     <span className="text-blood-red font-bold text-2xl mr-1">"</span>
-                    A eficiência dele é referência. Todos admiram seu trabalho.
+                    Saber o que ele ensina é a diferença entre ser chamado ou ser ignorado.
                     <span className="text-blood-red font-bold text-2xl ml-1">"</span>
                   </p>
                 </div>
@@ -557,10 +553,9 @@ const App: React.FC = () => {
           <Reveal>
             <div className="max-w-3xl mx-auto text-center p-10 bg-white border-l-4 border-blood-red rounded-lg shadow-sm">
               <p className="text-lg text-slate-800 leading-relaxed italic">
-                "Confiança não se declara. Se constrói.<br/><br/>
-                O Dr. Thiago construiu sua reputação onde não existe margem de erro:
-                plantões críticos, ambientes de alta pressão, decisões que salvam vidas.<br/><br/>
-                <strong className="text-blood-red">E é essa mesma confiança operacional que ele vai te ensinar a construir.</strong>"
+                "Confiança operacional é o único ativo que o excesso de médicos não consegue desvalorizar. <br/><br/>
+                O Dr. Thiago construiu sua reputação onde não existe margem de erro: plantões críticos e decisões de alta pressão.<br/><br/>
+                <strong className="text-blood-red">É essa segurança que ele vai te ensinar a projetar no mercado.</strong>"
               </p>
             </div>
           </Reveal>
@@ -572,22 +567,22 @@ const App: React.FC = () => {
         <div className="bg-[#ECFDF5] p-20 border-2 border-success-green flex flex-col items-center text-center">
           <Reveal>
             <CheckCircle2 size={64} className="text-success-green mb-8" />
-            <h3 className="text-3xl font-heading font-black uppercase italic mb-8">O WORKSHOP É PARA VOCÊ:</h3>
+            <h3 className="text-3xl font-heading font-black uppercase italic mb-8">ESTE WORKSHOP É PARA VOCÊ:</h3>
             <ul className="space-y-4 text-lg font-bold uppercase tracking-tight text-deep-black">
-              <li>✅ Recém-formados em busca de plantões fixos</li>
-              <li>✅ Cansou da humilhação do WhatsApp</li>
-              <li>✅ Precisa de previsibilidade financeira</li>
+              <li>✅ Médico que busca previsibilidade financeira real</li>
+              <li>✅ Cansou da humilhação de grupos de WhatsApp</li>
+              <li>✅ Quer ser o primeiro nome na lista da coordenação</li>
             </ul>
           </Reveal>
         </div>
         <div className="bg-[#FEE2E2] p-20 border-2 border-blood-red flex flex-col items-center text-center">
           <Reveal>
             <XCircle size={64} className="text-blood-red mb-8" />
-            <h3 className="text-3xl font-heading font-black uppercase italic mb-8">NÃO É PARA VOCÊ:</h3>
+            <h3 className="text-3xl font-heading font-black uppercase italic mb-8">NÃO PERCA SEU TEMPO SE VOCÊ:</h3>
             <ul className="space-y-4 text-lg font-bold uppercase tracking-tight text-deep-black">
-              <li>❌ Acredita que CRM sozinho basta</li>
-              <li>❌ Aceita o amadorismo hospitalar</li>
-              <li>❌ Busca fórmulas sem mudança de postura</li>
+              <li>❌ Acredita que o CRM sozinho te deve algo</li>
+              <li>❌ Aceita ser tratado como número descartável</li>
+              <li>❌ Não está disposto a mudar seu posicionamento</li>
             </ul>
           </Reveal>
         </div>
@@ -600,9 +595,9 @@ const App: React.FC = () => {
             <h2 className="text-4xl md:text-6xl font-heading font-black tracking-tighter uppercase italic mb-16 text-center">PERGUNTAS FREQUENTES</h2>
           </Reveal>
           <div className="border border-slate-200 rounded-3xl overflow-hidden shadow-2xl">
-            <FAQItem question="Para quem é indicado este workshop?" answer="Para médicos recém-formados ou em início de carreira que desejam sair da instabilidade dos plantões caóticos e conquistar posições em plantões fixos garantidos." />
-            <FAQItem question="Haverá gravação?" answer="Sim, todos os inscritos receberão acesso à gravação por tempo limitado." />
-            <FAQItem question="Por que apenas R$ 27,00?" answer="Este é um valor promocional de validação do lote 01. O preço normal é R$ 997,00." />
+            <FAQItem question="Por que custa apenas R$ 27,00?" answer="R$ 27,00 não é o preço do conteúdo. É o preço do filtro. Se você não está disposto a investir o valor de um lanche para garantir sua previsibilidade, você já aceitou o seu destino na base da pirâmide." />
+            <FAQItem question="O workshop ficará gravado?" answer="Sim, mas a transformação real acontece no ao vivo. Você terá acesso à gravação por tempo limitado para revisão." />
+            <FAQItem question="Eu sou recém-formado, serve para mim?" answer="Especialmente para você. É agora que você define se será um médico de elite ou um tapa-buraco do sistema." />
           </div>
         </div>
       </section>
@@ -613,7 +608,7 @@ const App: React.FC = () => {
         <div className="max-w-5xl mx-auto relative z-10">
           <Reveal>
             <h2 className="text-5xl md:text-8xl font-heading font-black tracking-tighter uppercase italic leading-[0.8] mb-12 text-gold-accent">
-              CHEGA DE IMPLORAR.<br/> <span className="text-white">QUERO MEU PLANTÃO GARANTIDO.</span>
+              OU APRENDE O JOGO,<br/> <span className="text-white">OU CONTINUA DISPUTANDO O QUE SOBRA.</span>
             </h2>
             <div className="mb-12">
               <span className="text-white/40 line-through text-2xl font-bold">De R$ 997,00</span>
@@ -625,19 +620,18 @@ const App: React.FC = () => {
                 onClick={safeOpen}
                 className="w-full py-8 bg-warning-orange hover:bg-gold-accent text-deep-black font-black text-2xl md:text-3xl uppercase italic rounded-2xl shadow-[0_0_50px_rgba(245,158,11,0.5)] transition-all animate-heartbeat"
               >
-                SIM, QUERO MEU PLANTÃO GARANTIDO AGORA
+                SIM, QUERO MEU PLANTÃO GARANTIDO
               </button>
               
-              {/* PADRONIZAÇÃO: Última barra idêntica à primeira utilizando o prop 'progress' */}
               <ProgressBar progress={salesProgress} variant="red" />
             </div>
             <div className="bg-deep-black/60 p-12 rounded-3xl border-2 border-gold-accent max-w-xl mx-auto">
               <div className="flex items-center gap-4 mb-6">
                 <ShieldCheck className="text-gold-accent" size={48} />
-                <h4 className="text-2xl font-black uppercase italic text-left">GARANTIA DE ACESSO E TRANSPARÊNCIA</h4>
+                <h4 className="text-2xl font-black uppercase italic text-left">FILTRO DE COMPROMETIMENTO</h4>
               </div>
               <p className="text-slate-300 text-left leading-relaxed">
-                Reembolso integral em até 2 dias após o workshop caso entenda que o conteúdo não agregou. Sem burocracia.
+                Quem não investe R$ 27,00 para aprender a dominar o sistema paga com anos de plantões ruins e instabilidade. A escolha é sua.
               </p>
             </div>
           </Reveal>
