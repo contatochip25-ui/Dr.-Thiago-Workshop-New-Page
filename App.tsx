@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -49,7 +50,7 @@ const NOTIFICATIONS = [
   { name: "Dr. Marcos (RS)", time: "Há 1 minuto" },
 ];
 
-const safeOpen = () => window.open(CHECKOUT_URL, '_blank', 'noopener,noreferrer');
+const safeOpen = () => { window.location.href = CHECKOUT_URL; };
 
 // --- COMPONENTES DE UI ---
 
