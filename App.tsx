@@ -65,6 +65,400 @@ const Reveal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <div ref={ref} className="reveal">{children}</div>;
 };
 
+/* COMPONENTE DE PROVAS SOCIAIS SOLICITADO */
+const SocialProofSection = () => (
+    <section className="testimonials-section">
+        <style dangerouslySetInnerHTML={{ __html: `
+            .testimonials-section {
+                width: 100%;
+                background: #f8f9fa;
+                padding: 80px 20px;
+                overflow: hidden;
+            }
+
+            .section-header {
+                max-width: 1200px;
+                margin: 0 auto 50px;
+                text-align: center;
+            }
+
+            .section-title {
+                color: #1a1a1a;
+                font-size: 36px;
+                font-weight: 700;
+                margin-bottom: 12px;
+                line-height: 1.2;
+            }
+
+            .section-subtitle {
+                color: #666;
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            .carousel-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+                padding: 20px 0;
+            }
+
+            .carousel-track {
+                display: flex;
+                animation: scroll-testimonials 45s linear infinite;
+                width: fit-content;
+            }
+
+            .carousel-track:hover {
+                animation-play-state: paused;
+            }
+
+            @keyframes scroll-testimonials {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .testimonial-card {
+                min-width: 420px;
+                max-width: 420px;
+                background: white;
+                border-radius: 16px;
+                padding: 32px 28px;
+                margin: 0 12px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1px solid #e9ecef;
+            }
+
+            .testimonial-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+                border-color: #dee2e6;
+            }
+
+            .card-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            .author-info {
+                flex: 1;
+            }
+
+            .author-name {
+                color: #1a1a1a;
+                font-weight: 600;
+                font-size: 16px;
+                margin-bottom: 2px;
+            }
+
+            .author-specialty {
+                color: #6c757d;
+                font-size: 13px;
+                font-weight: 400;
+            }
+
+            .star-rating {
+                color: #ffc107;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .testimonial-text {
+                color: #495057;
+                font-size: 15px;
+                line-height: 1.7;
+                margin-top: 18px;
+            }
+
+            .quote-icon {
+                color: #667eea;
+                opacity: 0.15;
+                font-size: 60px;
+                line-height: 0;
+                margin-bottom: 10px;
+                font-family: Georgia, serif;
+            }
+
+            @media (max-width: 768px) {
+                .testimonials-section {
+                    padding: 60px 15px;
+                }
+
+                .section-title {
+                    font-size: 28px;
+                }
+
+                .section-subtitle {
+                    font-size: 16px;
+                }
+
+                .testimonial-card {
+                    min-width: 340px;
+                    max-width: 340px;
+                    padding: 26px 22px;
+                }
+
+                .testimonial-text {
+                    font-size: 14px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .section-title {
+                    font-size: 24px;
+                }
+
+                .testimonial-card {
+                    min-width: 300px;
+                    max-width: 300px;
+                    padding: 22px 18px;
+                }
+            }
+        ` }} />
+        <div className="section-header">
+            <h2 className="section-title">O Que Dizem os Médicos Que Já Participaram</h2>
+            <p className="section-subtitle">Resultados reais de profissionais que transformaram suas carreiras</p>
+        </div>
+        
+        <div className="carousel-container">
+            <div className="carousel-track">
+                {/* Primeiro conjunto */}
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Hellen</div>
+                            <div className="author-specialty">Clínico Geral</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        A experiência do Dr. Thiago e sua visão clara do mercado médico atual nos ajudam a enxergar novas possibilidades. Uma medicina séria, que realmente beneficia os pacientes e suas famílias, é possível. Falar sobre isso de forma ética faz toda a diferença.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Fábio</div>
+                            <div className="author-specialty">Médico da Família</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Eu achava que teria só algumas ideias para refletir, mas o workshop foi muito além. A análise individual e as soluções personalizadas mudaram completamente minha visão. Superou minhas expectativas — e ainda recebi um projeto pronto!
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Juliana</div>
+                            <div className="author-specialty">Pediatra</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Amei! Sensacional! Muito obrigada! Parece que você leu minha alma. O atual cenário da medicina é insustentável — e nada disso nos é ensinado no mercado ou na formação. Dr. Thiago conhece muito e fica fácil entender.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Claudia</div>
+                            <div className="author-specialty">Médico Residente</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        A mentoria foi muito além do que esperava. A análise individual e as soluções personalizadas mudaram completamente minha visão. Superou minhas expectativas — e ainda recebi um projeto pronto! Recomendo muito!
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Rafael</div>
+                            <div className="author-specialty">Médico Recém-formado</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Como recém-formado, estava perdido sobre como estruturar minha carreira. O workshop me deu clareza e um plano de ação concreto. Agora sei exatamente qual caminho seguir e como me posicionar no mercado.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Mariana</div>
+                            <div className="author-specialty">Clínica Geral</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        O workshop foi direto ao ponto. Entendi como funciona a lógica da coordenação e o que realmente pesa na escolha dos plantonistas. Parei de aceitar qualquer plantão e comecei a ser chamada para os melhores horários.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Carlos</div>
+                            <div className="author-specialty">Pediatra</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Eu estava preso a plantões ruins e sem previsibilidade. Com o método do Dr. Thiago, ajustei meu posicionamento e passei a ser lembrado pela coordenação. Hoje escolho melhor onde e quando dar plantão.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Amanda</div>
+                            <div className="author-specialty">Médico Residente</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Mesmo ainda na residência, aprendi conceitos fundamentais sobre gestão e posicionamento que ninguém ensina na faculdade. Estou me preparando desde já para ter uma carreira sólida e sustentável.
+                    </p>
+                </div>
+
+                {/* Duplicação para loop infinito */}
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Hellen</div>
+                            <div className="author-specialty">Clínico Geral</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        A experiência do Dr. Thiago e sua visão clara do mercado médico atual nos ajudam a enxergar novas possibilidades. Uma medicina séria, que realmente beneficia os pacientes e suas famílias, é possível. Falar sobre isso de forma ética faz toda a diferença.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Fábio</div>
+                            <div className="author-specialty">Médico da Família</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Eu achava que teria só algumas ideias para refletir, mas o workshop foi muito além. A análise individual e as soluções personalizadas mudaram completamente minha visão. Superou minhas expectativas — e ainda recebi um projeto pronto!
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Juliana</div>
+                            <div className="author-specialty">Pediatra</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Amei! Sensacional! Muito obrigada! Parece que você leu minha alma. O atual cenário da medicina é insustentável — e nada disso nos é ensinado no mercado ou na formação. Dr. Thiago conhece muito e fica fácil entender.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Claudia</div>
+                            <div className="author-specialty">Médico Residente</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        A mentoria foi muito além do que esperava. A análise individual e as soluções personalizadas mudaram completamente minha visão. Superou minhas expectativas — e ainda recebi um projeto pronto! Recomendo muito!
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Rafael</div>
+                            <div className="author-specialty">Médico Recém-formado</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Como recém-formado, estava perdido sobre como estruturar minha carreira. O workshop me deu clareza e um plano de ação concreto. Agora sei exatamente qual caminho seguir e como me posicionar no mercado.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Mariana</div>
+                            <div className="author-specialty">Clínica Geral</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        O workshop foi direto ao ponto. Entendi como funciona a lógica da coordenação e o que realmente pesa na escolha dos plantonistas. Parei de aceitar qualquer plantão e comecei a ser chamada para os melhores horários.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dr. Carlos</div>
+                            <div className="author-specialty">Pediatra</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Eu estava preso a plantões ruins e sem previsibilidade. Com o método do Dr. Thiago, ajustei meu posicionamento e passei a ser lembrado pela coordenação. Hoje escolho melhor onde e quando dar plantão.
+                    </p>
+                </div>
+
+                <div className="testimonial-card">
+                    <div className="quote-icon">"</div>
+                    <div className="card-header">
+                        <div className="author-info">
+                            <div className="author-name">Dra. Amanda</div>
+                            <div className="author-specialty">Médico Residente</div>
+                        </div>
+                        <div className="star-rating">★★★★★</div>
+                    </div>
+                    <p className="testimonial-text">
+                        Mesmo ainda na residência, aprendi conceitos fundamentais sobre gestão e posicionamento que ninguém ensina na faculdade. Estou me preparando desde já para ter uma carreira sólida e sustentável.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
 /* COMPONENTE DE BARRA DE PROGRESSO PADRONIZADO */
 const ProgressBar: React.FC<{ progress: number; variant?: 'red' | 'green' }> = ({ progress, variant = 'red' }) => (
   <div className="w-full mt-6 mb-4 relative z-50">
@@ -424,6 +818,9 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* PROVAS SOCIAIS - INSERIDO CONFORME SOLICITADO */}
+      <SocialProofSection />
+
       {/* 5. PLANO DE AÇÃO (GRAY) */}
       <section className="py-28 px-6 bg-gray-100">
         <div className="max-w-6xl mx-auto">
@@ -487,7 +884,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. VÍDEOS DE VALIDAÇÃO --- preservado --- */}
+      {/* 7. VÍDEOS DE VALIDAÇÃO */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
