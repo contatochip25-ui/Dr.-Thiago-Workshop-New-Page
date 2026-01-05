@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -345,7 +344,7 @@ const App: React.FC = () => {
               </h2>
               <div className="w-24 h-2 bg-blood-red mx-auto mt-8" />
               <p className="mt-8 text-xl text-slate-medium max-w-3xl mx-auto leading-relaxed">
-                Hoje, 38 mil novos médicos entram no sistema anualmente. A maioria vai passar a carreira inteira brigando por migalhas em grupos de WhatsApp, sendo tratada como número descartável.
+                Hoje, 38 mil novos médicos entram no sistema anualmente. A maioria vai passar a carreira inteira brigando por migalhas em grupos de WhatsApp, sendo tratado como número descartável.
               </p>
             </div>
           </Reveal>
@@ -414,7 +413,7 @@ const App: React.FC = () => {
                 <p>O Dr. Thiago Costa atua onde o sistema não pode falhar. Ele opera nos bastidores da medicina real.</p>
                 <p>Ele aprendeu o que os livros ocultam: no hospital, quem cresce não é o detentor de títulos — é o detentor de confiança operacional.</p>
                 <p>A faculdade ensina a tratar doenças. O mercado exige que você saiba tratar o sistema para garantir sua liberdade e seu respeito.</p>
-                <p>Hoje, ele ensina médicos a saírem da lógica do esforço braçal infinito para entrarem no jogo da previsibilidade estratégica.</p>
+                <p>Hoje, he ensina médicos a saírem da lógica do esforço braçal infinito para entrarem no jogo da previsibilidade estratégica.</p>
               </div>
               <div className="mt-12 p-8 bg-gray-100 border-l-8 border-blood-red italic text-xl font-bold leading-relaxed">
                 "Na medicina moderna, quem cresce não é o mais técnico. É o mais confiável."
@@ -488,7 +487,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. VÍDEOS DE VALIDAÇÃO */}
+      {/* 7. VÍDEOS DE VALIDAÇÃO --- preservado --- */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
