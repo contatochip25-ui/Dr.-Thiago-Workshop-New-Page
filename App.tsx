@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -65,17 +66,19 @@ const Reveal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <div ref={ref} className="reveal">{children}</div>;
 };
 
-const ProgressBar: React.FC<{ variant?: 'red' | 'green'; label?: string }> = ({ variant = 'red', label = 'LOTE 01: 92% DAS VAGAS PREENCHIDAS' }) => (
-  <div className="w-full mt-4">
-    <div className="flex justify-between items-end mb-1 text-[10px] font-black uppercase tracking-tighter">
-      <span className={variant === 'red' ? 'text-blood-red' : 'text-success-green'}>{label}</span>
-      <span className={variant === 'red' ? 'text-blood-red' : 'text-success-green'}>92%</span>
-    </div>
-    <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+/* COMPONENTE DE BARRA DE PROGRESSO PADRONIZADO - CORREÇÃO DE VISIBILIDADE */
+const ProgressBar: React.FC<{ progress: number; variant?: 'red' | 'green' }> = ({ progress, variant = 'red' }) => (
+  <div className="w-full mt-6 mb-4 relative z-50">
+    <div className="relative h-6 bg-white/20 rounded-full overflow-hidden border border-white/10 shadow-lg min-h-[24px]">
       <div 
-        className={`h-full ${variant === 'red' ? 'bg-blood-red' : 'bg-success-green'} rounded-full transition-all duration-1000`} 
-        style={{ width: '92%' }} 
+        className={`h-full ${variant === 'red' ? 'bg-blood-red' : 'bg-success-green'} transition-all duration-1000 ease-out`} 
+        style={{ width: `${progress}%` }} 
       />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="text-white text-[10px] font-black uppercase tracking-[0.15em] leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
+          LOTE 01 • {Math.floor(progress)}% DOS INGRESSOS VENDIDOS
+        </span>
+      </div>
     </div>
   </div>
 );
@@ -137,8 +140,8 @@ const ConversionToast = () => {
         setNotif(NOTIFICATIONS[Math.floor(Math.random() * NOTIFICATIONS.length)]);
         setShow(true);
       }, 500);
-      setTimeout(() => setShow(false), 5000);
-    }, 12000);
+      setTimeout(() => setShow(false), 12000); 
+    }, 20000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -156,7 +159,7 @@ const ConversionToast = () => {
 };
 
 const VisitorCounter = () => {
-  const [count, setCount] = useState(42);
+  const [count, setCount] = useState(41);
   useEffect(() => {
     const interval = setInterval(() => {
       setCount(prev => {
@@ -229,6 +232,9 @@ const ExitModal = () => {
 // --- APP PRINCIPAL ---
 
 const App: React.FC = () => {
+  /* Lógica de progressão: Inicia em 67%, para em 79%, suave a cada 5s */
+  const [salesProgress, setSalesProgress] = useState(67);
+
   useEffect(() => {
     const handleScroll = () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -239,6 +245,22 @@ const App: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSalesProgress(prev => {
+        if (prev >= 79) {
+          clearInterval(timer);
+          return 79;
+        }
+        // Incremento pequeno e suave a cada 5 segundos
+        const increment = 0.4 + Math.random() * 0.6;
+        const nextValue = prev + increment;
+        return nextValue > 79 ? 79 : nextValue;
+      });
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   // Injetar script do PandaVideo
@@ -258,13 +280,14 @@ const App: React.FC = () => {
       <ConversionToast />
       <ExitModal />
 
-      {/* 1. HERO (DARK) */}
-      <section className="relative min-h-[100dvh] flex flex-col justify-center items-center bg-deep-black overflow-hidden pt-20">
+      {/* 1. HERO (DARK) - Adicionado pb-32 para evitar sobreposição do marquee */}
+      <section className="relative min-h-[100dvh] flex flex-col justify-center items-center bg-deep-black overflow-hidden pt-20 pb-32">
         <div className="absolute inset-0 opacity-40">
            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-dark/30 to-deep-black z-10" />
            <img src={IMAGES.mainAuthority} className="w-full h-full object-cover object-top md:object-right-top" alt="Dr. Thiago" />
         </div>
-        <div className="relative z-20 max-w-6xl mx-auto px-6 text-center md:text-left grid md:grid-cols-2">
+        {/* Container principal com z-40 para ficar acima do marquee z-30 */}
+        <div className="relative z-40 max-w-6xl mx-auto px-6 text-center md:text-left grid md:grid-cols-2">
           <div className="flex flex-col items-center md:items-start">
             <span className="bg-blood-red text-white px-5 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-gold-accent shadow-lg mb-8 animate-float">
               🔴 EXCLUSIVO PARA MÉDICOS
@@ -273,8 +296,7 @@ const App: React.FC = () => {
               O CRM TE DEU O DIREITO. <span className="text-blood-red underline decoration-gold-accent/50">NÃO A GARANTIA.</span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 font-medium leading-relaxed max-w-xl mb-12">
-              Plantão fixo não vai para o mais técnico. <br className="hidden md:block" />
-              Vai para quem entende o jogo, se posiciona certo e se torna indispensável.
+              O método completo para virar o plantonista mais procurado. Enquanto outros esperam o WhatsApp tocar, você escolhe qual aceitar e qual recusar.
             </p>
             <div className="w-full max-w-md">
               <div className="flex flex-col items-center md:items-start mb-6 text-white/90">
@@ -299,11 +321,13 @@ const App: React.FC = () => {
               >
                 GARANTIR MEU INGRESSO
               </button>
-              <ProgressBar variant="red" />
+
+              {/* BARRA DE PROGRESSO HERO - CORREÇÃO DE VISIBILIDADE E TEXTO PADRONIZADO */}
+              <ProgressBar progress={salesProgress} variant="red" />
             </div>
           </div>
         </div>
-        {/* Marquee */}
+        {/* Marquee - Z-INDEX 30 */}
         <div className="absolute bottom-0 left-0 w-full bg-warning-orange py-4 overflow-hidden border-t-2 border-deep-black z-30">
           <div className="flex whitespace-nowrap animate-infinite-scroll">
             {[...Array(20)].map((_, i) => (
@@ -392,10 +416,10 @@ const App: React.FC = () => {
                 <p>O Dr. Thiago Costa é o tipo de médico que o sistema chama quando precisa funcionar.</p>
                 <p>Ele aprendeu o que a faculdade nunca ensinou: na medicina, quem cresce não é o mais técnico — é o mais confiável.</p>
                 <p>Confiança não se declara. Se constrói. E é ela que define quem entra nos bons plantões fixos, quem é mantido e quem vira referência.</p>
-                <p>Hoje, ele ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade estratégica.</p>
+                <p>Hoje, he ensina médicos recém-formados a sair da lógica do esforço infinito e entrar no jogo da previsibilidade estratégica.</p>
               </div>
               <div className="mt-12 p-8 bg-gray-100 border-l-8 border-blood-red italic text-xl font-bold leading-relaxed">
-                "Esforço sem estratégia na medicina moderna é o caminho mais rápido para a invisibilidade profissional."
+                "Esforço sem estratégia na medicina moderna é o caminho mais rápido para the invisibilidade profissional."
                 <footer className="mt-4 text-blood-red not-italic font-black uppercase text-sm">— Dr. Thiago Costa</footer>
               </div>
             </Reveal>
@@ -603,7 +627,9 @@ const App: React.FC = () => {
               >
                 SIM, QUERO MEU PLANTÃO GARANTIDO AGORA
               </button>
-              <ProgressBar variant="red" label="🔥 Lote 01 • Últimas 14 vagas • R$ 27,00" />
+              
+              {/* PADRONIZAÇÃO: Última barra idêntica à primeira utilizando o prop 'progress' */}
+              <ProgressBar progress={salesProgress} variant="red" />
             </div>
             <div className="bg-deep-black/60 p-12 rounded-3xl border-2 border-gold-accent max-w-xl mx-auto">
               <div className="flex items-center gap-4 mb-6">
