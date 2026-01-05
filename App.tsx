@@ -606,7 +606,7 @@ const ExitModal = () => {
         </p>
         <div className="bg-red-dark/50 p-4 rounded-xl mb-8 flex items-center justify-center gap-3 text-white font-bold animate-pulse">
           <Flame className="text-warning-orange" />
-          <span>12 médicos garantiram vaga enquanto você lia</span>
+          <span>12 médicos garantiu vaga enquanto você lia</span>
         </div>
         <button 
           onClick={safeOpen}
@@ -807,7 +807,7 @@ const App: React.FC = () => {
                 <p>O Dr. Thiago Costa atua onde o sistema não pode falhar. Ele opera nos bastidores da medicina real.</p>
                 <p>Ele aprendeu o que os livros ocultam: no hospital, quem cresce não é o detentor de títulos — é o detentor de confiança operacional.</p>
                 <p>A faculdade ensina a tratar doenças. O mercado exige que você saiba tratar o sistema para garantir sua liberdade e seu respeito.</p>
-                <p>Hoje, he ensina médicos a saírem da lógica do esforço braçal infinito para entrarem no jogo da previsibilidade estratégica.</p>
+                <p>Hoje, ele ensina médicos a saírem da lógica do esforço braçal infinito para entrarem no jogo da previsibilidade estratégica.</p>
               </div>
               <div className="mt-12 p-8 bg-gray-100 border-l-8 border-blood-red italic text-xl font-bold leading-relaxed">
                 "Na medicina moderna, quem cresce não é o mais técnico. É o mais confiável."
