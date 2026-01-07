@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowRight, 
@@ -605,10 +604,6 @@ const ExitModal = () => {
           Por R$ 27,00 você tem acesso ao código que muda o jogo.<br/>
           <strong>O Lote 01 está expirando agora.</strong>
         </p>
-        <div className="bg-red-dark/50 p-4 rounded-xl mb-8 flex items-center justify-center gap-3 text-white font-bold animate-pulse">
-          <Flame className="text-warning-orange" />
-          <span>12 médicos garantiu vaga enquanto você lia</span>
-        </div>
         <button 
           onClick={safeOpen}
           className="w-full py-6 bg-warning-orange hover:bg-gold-accent text-deep-black font-black text-xl uppercase tracking-tighter rounded-xl shadow-2xl transition-all animate-heartbeat"
@@ -668,8 +663,6 @@ const App: React.FC = () => {
   return (
     <div className="relative">
       <StickyCTA />
-      <VisitorCounter />
-      <ConversionToast />
       <ExitModal />
 
       {/* 1. HERO (DARK) */}
